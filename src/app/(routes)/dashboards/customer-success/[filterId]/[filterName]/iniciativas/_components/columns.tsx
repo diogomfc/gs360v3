@@ -11,6 +11,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { logosCliente, priorities, statuses } from '../../data';
 import { DataTableColumnHeader } from './data-table-column-header';
 
+import { useDataLimite } from '@/hooks/use-data-limite';
+import { usePriority } from '@/hooks/use-prioridade';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Calendar } from 'lucide-react';
@@ -232,10 +234,11 @@ export const columns: ColumnDef<JiraIssue>[] = [
 			<DataTableColumnHeader column={column} title="Prioridade" />
 		),
 		cell: ({ row }) => {
-			const priority =
-				priorities.find(
-					(priority) => priority.value === row.getValue('priority'),
-				) || priorities.find((priority) => priority.value === 'P4 - Low');
+			// Utiliza o hook usePriority para calcular a prioridade
+			const { priority } = usePriority({
+				priorityValue: row.getValue('priority'),
+				priorities: priorities,
+			});
 
 			if (!priority) {
 				return null;
@@ -277,42 +280,11 @@ export const columns: ColumnDef<JiraIssue>[] = [
 			<DataTableColumnHeader column={column} title="Data Limite" />
 		),
 		cell: ({ row }) => {
-			//const endDate = row.getValue('dataLimite');
-
-			const dataLimite = row.original.dataLimite;
-			const currentDate = new Date();
-
-			// Converte a data para um formato legível
-			const endDateISO = new Date(dataLimite as string);
-			const formattedEndDate = Number.isNaN(endDateISO.getTime())
-				? '-- --'
-				: format(endDateISO, 'dd MMM', { locale: ptBR });
-
-			// Cálculo da diferença em dias entre a data atual e a data limite
-			const timeDiff = endDateISO.getTime() - currentDate.getTime();
-			const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Converter de milissegundos para dias
-
-			// Verifica se a data já passou ou se ainda há dias restantes
-			const daysLeftText =
-				daysLeft > 0
-					? `${daysLeft} dias restantes`
-					: daysLeft === 0
-						? 'Último dia'
-						: 'Data expirada';
-
-			// Definição de classes baseadas nos dias restantes
-			let textColorClass = 'text-blue-500';
-			let bgColorClass = 'bg-white';
-
-			if (daysLeft > 0) {
-				bgColorClass = 'bg-blue-50'; // Dentro do prazo
-			} else if (daysLeft === 0) {
-				bgColorClass = 'bg-yellow-100'; // Último dia
-				textColorClass = 'text-yellow-800'; // Para destacar o texto
-			} else {
-				bgColorClass = 'bg-red-50'; // Data expirada
-				textColorClass = 'text-red-800'; // Para destacar o texto
-			}
+			// Utiliza o hook useDataLimite para calcular a data limite
+			const { formattedEndDate, daysLeftText, textColorClass, bgColorClass } =
+				useDataLimite({
+					dataLimite: row.original.dataLimite,
+				});
 
 			return (
 				<div

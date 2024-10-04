@@ -110,9 +110,11 @@ export function DataTableRowActions<TData>({
 				estadoInicial={jiraIssue.estadoInicial}
 				ultimasAtividades={jiraIssue.ultimasAtividades}
 				proximasAtividades={jiraIssue.proximasAtividades}
-				// endDate={jiraIssue.estadoInicial}
 				status={jiraIssue.status}
 				summary={jiraIssue.summary}
+				produto={jiraIssue.produto}
+				priority={jiraIssue.priority}
+				dataLimite={jiraIssue.dataLimite}
 			/>
 		</>
 	);
