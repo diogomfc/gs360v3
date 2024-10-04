@@ -1,0 +1,141 @@
+'use client';
+
+import PageHeader from '@/app/(routes)/_components/page-header';
+import { useJiraFilter } from '@/http/jira/get-jira-filter-id';
+import { StopwatchIcon } from '@radix-ui/react-icons';
+import { CircleHelp, OctagonPause, Rocket } from 'lucide-react';
+import Image from 'next/image';
+import { CardStatus } from './_components/card-status';
+import { OverviewYear } from './_components/overviwer/overview-year';
+import { ProgramList } from './_components/program-list';
+import { RecentInitiatives } from './_components/recent-iniciatives';
+import { TotalInitiatives } from './_components/total-initiatives';
+
+interface JiraFilterDetailsProps {
+	params: { filterId: string; filterName: string };
+}
+
+export default function JiraFilterDetails({ params }: JiraFilterDetailsProps) {
+	const { filterId, filterName } = params;
+
+	const { data: jiraData, isLoading, isError } = useJiraFilter(filterId);
+
+	if (isLoading) return <div>Loading...</div>;
+	if (isError) return <div>Error loading filter details</div>;
+
+	// Extrai os 'Produto Counts' dos dados recebidos
+	const produtoCounts = Object.entries(jiraData?.produtoCounts || {});
+
+	return (
+		<>
+			<PageHeader
+				title={`${decodeURIComponent(filterName)} - Visão Geral` || 'Dashboard'}
+				icon={
+					<Image
+						src="/icon-dashboard-filter.svg"
+						alt="Dashboard"
+						width={20}
+						height={20}
+					/>
+				}
+			/>
+
+			<main className="flex-1 h-[calc(100vh-61px)] relative overflow-auto bg-slate-50">
+				<div className="hidden flex-col md:flex p-8">
+					<div className="flex-1 space-y-4 ">
+						<div className="space-y-4">
+							{/* Cards Topo */}
+							<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+								{/* Card total de iniciativas */}
+								<TotalInitiatives jiraData={jiraData} />
+
+								{/* Card total de programas em lista com ícone */}
+								<ProgramList produtoCounts={produtoCounts} />
+
+								{/* Grupo 1: Cards de Desenvolvimento e Validação */}
+								<div className="grid w-full grid-rows-2 gap-4">
+									{/* Card 1: Backlog */}
+									<CardStatus
+										//FileInput
+										icon={<CircleHelp size={24} color="#327dd2" />}
+										color="rgba(79, 150, 249, 0.2)"
+										title="Backlog"
+										count={
+											(jiraData?.statusCounts?.Backlog || 0) +
+											(jiraData?.statusCounts?.['Tarefas Onboarding'] || 0) +
+											(jiraData?.statusCounts?.['Tarefas Ongoing'] || 0) +
+											(jiraData?.statusCounts?.['Tarefas Suporte'] || 0)
+										}
+									/>
+
+									{/* Card 2: Impedimento */}
+									<CardStatus
+										//FileLock2
+										icon={<OctagonPause size={24} color="#a6b5c7" />}
+										color="rgba(118, 115, 114, 0.2)"
+										title="Impedimento"
+										count={
+											(jiraData?.statusCounts?.['Impedimento Onboarding'] ||
+												0) +
+											(jiraData?.statusCounts?.['Impedimento Ongoing'] || 0) +
+											(jiraData?.statusCounts?.['Impedimento Suporte'] || 0)
+										}
+									/>
+								</div>
+
+								{/* Grupo 2: Cards de Concluído e Em andamento */}
+								<div className="grid w-full grid-rows-2 gap-4">
+									{/* Card 2: Em andamento */}
+									<CardStatus
+										//FileClock
+										icon={
+											<StopwatchIcon
+												height={24}
+												width={24}
+												strokeWidth={2}
+												color="#E8C468"
+											/>
+										}
+										color="rgba(226, 186, 86, 0.2)"
+										title="Em andamento"
+										count={jiraData?.statusCounts?.['Em andamento'] || 0}
+									/>
+
+									{/* Card 3: Concluído */}
+									<CardStatus
+										// Rocket
+										//file-check
+										icon={<Rocket size={24} color="#2A9D90" />}
+										color="rgba(38, 141, 125, 0.2)"
+										title="Concluído"
+										count={jiraData?.statusCounts?.Concluído || 0}
+									/>
+								</div>
+							</div>
+
+							{/*  Cards Main */}
+							<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-8">
+								{/* Card Visão geral */}
+								<OverviewYear jiraData={jiraData} />
+
+								<RecentInitiatives
+									initiatives={
+										jiraData?.iniciativas.map((issue) => ({
+											initiativeId: issue.id,
+											summary: issue.summary,
+											status: issue.status,
+											cliente: issue.cliente,
+											fallback: issue.cliente[0],
+											endDate: issue.dataLimite,
+											color: 'gray', // Assumindo que 'gray' é uma cor padrão ou você pode ajustar conforme necessário
+										})) || []
+									}
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</>
+	);
+}

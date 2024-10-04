@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt-BR" className={inter.className}>
-			<body className="antialiased flex min-h-screen justify-center items-center bg-[#D9E4F4]">
+			<body className="antialiased flex min-h-screen bg-[#D9E4F4]">
 				<Providers>
 					{children}
 					<Toaster />
