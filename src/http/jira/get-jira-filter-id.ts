@@ -25,6 +25,7 @@ export interface JiraIssue {
 	dataLimite: string;
 	dataExecucao: string;
 	risco: string;
+	riscoOuIssue: string;
 	impacto: string;
 	impactoDetalhado: string;
 	acao: string;

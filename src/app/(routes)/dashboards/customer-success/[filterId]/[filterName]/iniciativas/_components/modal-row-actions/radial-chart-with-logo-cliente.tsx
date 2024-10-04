@@ -20,7 +20,7 @@ export function RadialChartWithLogoCliente({
 	evolucao,
 }: GraficoTesteClienteProps) {
 	// Dados do gráfico, usando o valor passado por prop para 'evolucao'
-	const chartData = [{ evolucao, fill: '#4CCDC5' }];
+	const chartData = [{ evolucao, fill: '#38b367' }];
 
 	// Configuração do gráfico
 	const chartConfig = {
@@ -44,15 +44,15 @@ export function RadialChartWithLogoCliente({
 				data={chartData}
 				startAngle={90} // Inicia no topo
 				endAngle={endAngle} // Cresce para a esquerda
-				innerRadius={40}
-				outerRadius={55}
+				innerRadius={35}
+				outerRadius={50}
 			>
 				<PolarGrid
 					gridType="circle"
 					radialLines={false}
 					stroke="none"
 					className="first:fill-muted last:fill-background"
-					polarRadius={[44, 37]}
+					polarRadius={[39, 32]}
 				/>
 				<RadialBar dataKey="evolucao" background cornerRadius={100} />
 				<PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>

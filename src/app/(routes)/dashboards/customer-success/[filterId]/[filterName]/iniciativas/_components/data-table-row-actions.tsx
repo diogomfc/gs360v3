@@ -111,6 +111,7 @@ export function DataTableRowActions<TData>({
 				ultimasAtividades={jiraIssue.ultimasAtividades}
 				proximasAtividades={jiraIssue.proximasAtividades}
 				status={jiraIssue.status}
+				riscoOuIssue={jiraIssue.riscoOuIssue}
 				summary={jiraIssue.summary}
 				produto={jiraIssue.produto}
 				priority={jiraIssue.priority}

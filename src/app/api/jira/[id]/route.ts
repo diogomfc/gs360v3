@@ -168,6 +168,7 @@ function formatIssues(issues: JiraIssue[]) {
 			dataExecucao:
 				issue.fields.resolutiondate?.split('T')[0] || 'Não executado',
 			risco: issue.fields.customfield_10151?.value || 'Desconhecido',
+			riscoOuIssue: issue.fields.customfield_10152 || 'Sem risco ou issue',
 			impacto,
 			impactoDetalhado: issue.fields.customfield_10154?.value || 'Desconhecido',
 			acao: issue.fields.customfield_10155 || 'Sem ação definida',
