@@ -1,5 +1,5 @@
 'use client';
-import { sidebarOpen } from '@/hooks/atoms';
+import { selectedFilterAtom, sidebarOpen } from '@/hooks/atoms';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { useAtom, useAtomValue } from 'jotai';
@@ -57,19 +57,19 @@ export default function SidebarDash() {
 	const sidebarLinks = {
 		'/dashboards': [
 			{
-				href: '#',
+				href: '/tarefas',
 				label: 'Tarefas',
 				icon: <SquareCheck size={20} />,
 				// badge: 100,
 			},
 			{
-				href: '#',
+				href: '/projetos',
 				label: 'Projetos',
 				icon: <FolderClosed size={20} />,
 			},
-			{ href: '#', label: 'Equipe', icon: <Users size={20} /> },
+			{ href: '/equipe', label: 'Equipe', icon: <Users size={20} /> },
 			{
-				href: '#',
+				href: '/relatorios',
 				label: 'Relatórios',
 				icon: <PieChart size={20} />,
 			},
@@ -208,6 +208,7 @@ export default function SidebarDash() {
 					</div>
 
 					{/* Links dinâmicos baseados na rota */}
+
 					{currentLinks?.map((link: any) => (
 						<NavbarLink
 							key={link.href}

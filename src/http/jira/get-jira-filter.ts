@@ -6,6 +6,13 @@ export interface JiraFilter {
 	id: string;
 	name: string;
 	description: string | null;
+	owner: {
+		avatarUrls: {
+			'48x48': string;
+		};
+		displayName: string;
+		accountId: string;
+	};
 }
 
 // Definição da resposta da API que lista filtros do Jira

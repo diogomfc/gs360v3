@@ -7,7 +7,7 @@ async function getFilters() {
 
 	const config = {
 		method: 'get',
-		url: `${baseUrl}/rest/api/3/filter/search?expand=description`,
+		url: `${baseUrl}/rest/api/3/filter/search?expand=description,owner`,
 		headers: { 'Content-Type': 'application/json' },
 		auth: {
 			username: process.env.ATLASSIAN_USERNAME,
@@ -31,6 +31,13 @@ export async function GET() {
 			id: filter.id,
 			name: filter.name,
 			description: filter.description || 'Sem descrição',
+			owner: {
+				accountId: filter.owner.accountId,
+				avatarUrls: {
+					'48x48': filter.owner.avatarUrls['48x48'],
+				},
+				displayName: filter.owner.displayName,
+			},
 		}));
 		return NextResponse.json({ filters });
 	} catch (error: any) {
