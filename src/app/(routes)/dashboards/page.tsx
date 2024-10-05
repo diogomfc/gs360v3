@@ -8,19 +8,19 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import CardDashboards from './_components/card-dashboards';
 
-import { selectedFilterAtom } from '@/hooks/atoms';
-import { useSetAtom } from 'jotai';
+//import { selectedFilterAtom } from '@/hooks/atoms';
+//import { useSetAtom } from 'jotai';
 import PageHeader from '../_components/page-header';
 
 export default function PageDashboards() {
 	const { data, isLoading, error } = useJiraFilters();
 	const [searchTerm, setSearchTerm] = useState(''); // Estado para o termo de busca
 	const router = useRouter(); // Inicializando o useRouter
-	const setSelectedFilter = useSetAtom(selectedFilterAtom); // Hook do Jotai para setar o estado
+	//const setSelectedFilter = useSetAtom(selectedFilterAtom); // Hook do Jotai para setar o estado
 
 	// Função para redirecionamento quando clicar em acessar
 	const handleAccess = (filterId: string, filterName: string) => {
-		setSelectedFilter({ filterId, filterName }); // Armazena os valores no estado global
+		//setSelectedFilter({ filterId, filterName }); // Armazena os valores no estado global
 		router.push(
 			`/dashboards/customer-success/${filterId}/${filterName}/visao-geral`,
 		);

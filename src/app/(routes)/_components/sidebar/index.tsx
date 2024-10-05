@@ -1,5 +1,5 @@
 'use client';
-import { selectedFilterAtom, sidebarOpen } from '@/hooks/atoms';
+import { sidebarOpen } from '@/hooks/atoms';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { useAtom, useAtomValue } from 'jotai';
@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
@@ -37,7 +37,10 @@ export default function SidebarDash() {
 	const [isOpen, setOpen] = useAtom(sidebarOpen);
 	const path = usePathname();
 	const [isHovered, setIsHovered] = useState(false);
-	const { filterId, filterName } = useAtomValue(selectedFilterAtom);
+	//const { filterId, filterName } = useAtomValue(selectedFilterAtom);
+
+	const params = useParams();
+	const { filterId, filterName } = params;
 
 	useEffect(() => {
 		// Se for exatamente /dashboards, o sidebar inicia aberto

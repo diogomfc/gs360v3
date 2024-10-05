@@ -303,7 +303,7 @@ export function JiraIssueModal({
 								</AccordionItem>
 							</Card>
 							{/*  Risco / Issue*/}
-							<Card className="flex  items-center col-span-6 gap-4 rounded-md p-0">
+							<Card className="flex items-center col-span-6 gap-4 rounded-md p-0">
 								<AccordionItem
 									value="item-2"
 									className="w-full border-none px-4"
@@ -323,7 +323,7 @@ export function JiraIssueModal({
 								</AccordionItem>
 							</Card>
 							{/*  Macro do plano */}
-							<Card className="flex  items-center col-span-6 gap-4 p-0 rounded-md">
+							<Card className="flex items-center col-span-6 gap-4 p-0 rounded-md">
 								<AccordionItem
 									value="item-3"
 									className=" w-full border-none px-4"

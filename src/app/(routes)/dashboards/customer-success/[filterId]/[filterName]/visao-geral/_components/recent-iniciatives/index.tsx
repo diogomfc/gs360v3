@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 
 import { Dot, LucideSquareArrowOutUpRight } from 'lucide-react';
+import { useParams } from 'next/navigation';
 import { InitiativeItem } from './iniciative-item';
 
 // Animação para cada item
@@ -26,6 +27,9 @@ interface RecentInitiativesProps {
 }
 
 export function RecentInitiatives({ initiatives }: RecentInitiativesProps) {
+	const params = useParams();
+	const { filterId, filterName } = params;
+
 	// Função para ordenar iniciativas por endDate
 	const sortedInitiatives = initiatives.slice().sort((a, b) => {
 		const dateA = new Date(a.endDate);
@@ -47,10 +51,14 @@ export function RecentInitiatives({ initiatives }: RecentInitiativesProps) {
 						</div>
 					</div>
 
-					<LucideSquareArrowOutUpRight
-						size={14}
-						className="text-muted-foreground"
-					/>
+					<a
+						href={`/dashboards/customer-success/${filterId}/${filterName}/iniciativas`}
+					>
+						<LucideSquareArrowOutUpRight
+							size={14}
+							className="text-muted-foreground"
+						/>
+					</a>
 				</div>
 			</div>
 
