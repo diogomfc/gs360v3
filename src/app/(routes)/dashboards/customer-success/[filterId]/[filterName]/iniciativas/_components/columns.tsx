@@ -8,7 +8,7 @@ import type { JiraIssue } from '@/http/jira/get-jira-filter-id';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-import { logosCliente, priorities, statuses } from '../../data';
+import { logosCliente, priorities, statuses } from '../../../../../data';
 import { DataTableColumnHeader } from './data-table-column-header';
 
 import { useDataLimite } from '@/hooks/use-data-limite';

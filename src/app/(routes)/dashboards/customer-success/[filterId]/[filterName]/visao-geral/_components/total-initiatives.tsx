@@ -10,7 +10,7 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from '@/components/ui/chart';
-import { statuses } from '../../data';
+import { statuses } from '../../../../../data';
 
 // Definindo o chartConfig para o gráfico
 const chartConfig = {

@@ -28,7 +28,7 @@ import {
 import { useDataLimite } from '@/hooks/use-data-limite';
 import { usePriority } from '@/hooks/use-prioridade';
 import { Separator } from '@radix-ui/react-separator';
-import { logosCliente, priorities, statuses } from '../../../data';
+import { logosCliente, priorities, statuses } from '../../../../../../data';
 import { RadialChartWithLogoCliente } from './radial-chart-with-logo-cliente';
 
 interface JiraIssueModalProps {

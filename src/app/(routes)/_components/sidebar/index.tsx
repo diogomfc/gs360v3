@@ -57,25 +57,20 @@ export default function SidebarDash() {
 	const sidebarLinks = {
 		'/dashboards': [
 			{
-				href: '/activity',
-				label: 'Activity',
-				icon: <BarChart3 size={20} />,
-			},
-			{
-				href: '/tasks',
-				label: 'Tasks',
+				href: '#',
+				label: 'Tarefas',
 				icon: <SquareCheck size={20} />,
 				// badge: 100,
 			},
 			{
-				href: '/projects',
-				label: 'Projects',
+				href: '#',
+				label: 'Projetos',
 				icon: <FolderClosed size={20} />,
 			},
-			{ href: '/team', label: 'Team', icon: <Users size={20} /> },
+			{ href: '#', label: 'Equipe', icon: <Users size={20} /> },
 			{
-				href: '/reports',
-				label: 'Reports',
+				href: '#',
+				label: 'Relatórios',
 				icon: <PieChart size={20} />,
 			},
 		],
@@ -98,11 +93,11 @@ export default function SidebarDash() {
 				icon: <IconCronograma width={20} height={20} />,
 				//badge: 4, // Badge para Cronograma
 			},
-			{
-				href: `/dashboards/customer-success/${filterId}/${filterName}/documentacao`,
-				label: 'Documentação',
-				icon: <IconDocumentacao width={20} height={20} />,
-			},
+			// {
+			// 	href: `/dashboards/customer-success/${filterId}/${filterName}/documentacao`,
+			// 	label: 'Documentação',
+			// 	icon: <IconDocumentacao width={20} height={20} />,
+			// },
 		],
 	};
 
@@ -276,14 +271,14 @@ export default function SidebarDash() {
 				)}
 			>
 				<NavbarLink
-					href="/settings"
+					href="#"
 					isSelected={path === '/settings'}
 					isSidebarOpen={isOpen}
 					icon={<Settings className="h-4 w-4 shrink-0" />}
 					label="Settings"
 				/>
 				<NavbarLink
-					href="/notifications"
+					href="#"
 					isSelected={path === '/notifications'}
 					isSidebarOpen={isOpen}
 					icon={<Bell className="h-4 w-4 shrink-0" />}

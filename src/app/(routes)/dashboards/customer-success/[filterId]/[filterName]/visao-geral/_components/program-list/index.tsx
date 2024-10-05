@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from '@/components/ui/card';
 
-import { productLogos } from '../../../data';
+import { productLogos } from '../../../../../../data';
 import { ProgramListItem } from './program-listItem';
 
 interface ProgramListProps {

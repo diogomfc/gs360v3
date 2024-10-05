@@ -3,7 +3,7 @@ import { useJiraFilter } from '@/http/jira/get-jira-filter-id';
 import { FileClock } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { logosCliente, statuses } from '../../../data';
+import { logosCliente, statuses } from '../../../../../../data';
 import { JiraIssueModal } from '../../../iniciativas/_components/modal-row-actions/data-Issue-modal';
 import { DateIcon } from './date-icon';
 

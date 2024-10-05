@@ -13,19 +13,17 @@ export default function UserMenu({
 	const avatar = (
 		<Avatar className="w-6 h-6">
 			<AvatarImage
-				src="https://avatars.githubusercontent.com/u/62941572?v=4&size=64"
+				src="/assets/customer-success/logo_eccox.png"
 				alt="@diogo.silva"
 			/>
-			<AvatarFallback>YL</AvatarFallback>
+			<AvatarFallback>EC</AvatarFallback>
 		</Avatar>
 	);
 
 	const userDetails = (
 		<div className="flex flex-col">
-			<span className="font-semibold">Diogo Silva</span>
-			<span className="text-xs text-muted-foreground">
-				diogo.silva@eccox.com.br
-			</span>
+			<span className="font-semibold text-xs">Eccox Technology</span>
+			<span className="text-xs text-muted-foreground">eccox@eccox.com.br</span>
 		</div>
 	);
 
@@ -39,7 +37,7 @@ export default function UserMenu({
 		>
 			{avatar}
 			{isSidebarOpen && userDetails}
-			<UserSettingsMenu />
+			{/* <UserSettingsMenu /> */}
 		</div>
 	);
 }
@@ -56,8 +54,8 @@ function UserSettingsMenu() {
 				align="end"
 				className="p-4 bg-white border border-gray-200 shadow-md rounded-md"
 			>
-				<div className="flex flex-col">
-					<span className="font-semibold">My Account</span>
+				<div className="flex flex-col text-sm">
+					<span className="font-semibold ">Minha Conta</span>
 					<PopoverItem label="Settings" />
 					<PopoverItem label="Support" />
 					<PopoverItem label="Logout" />
