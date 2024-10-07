@@ -7,6 +7,25 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { cloneElement, useState } from 'react';
 
+interface SidebarItemProps {
+	isSidebarOpen?: boolean;
+	icon?: React.ReactNode;
+	label: React.ReactNode;
+	isSelected?: boolean;
+	href: string;
+	iconColor?: string;
+	onClick?: () => void; // Add this line to include onClick
+}
+
+// {
+// 	isSidebarOpen?: boolean;
+// 	icon?: React.ReactNode;
+// 	label: React.ReactNode;
+// 	isSelected?: boolean;
+// 	href: string;
+// 	iconColor?: string; // Tipo para a nova propriedade
+// }
+
 export function NavbarLink({
 	isSidebarOpen,
 	icon,
@@ -14,14 +33,7 @@ export function NavbarLink({
 	isSelected,
 	href,
 	iconColor, // Nova propriedade para a cor do ícone
-}: {
-	isSidebarOpen?: boolean;
-	icon?: React.ReactNode;
-	label: React.ReactNode;
-	isSelected?: boolean;
-	href: string;
-	iconColor?: string; // Tipo para a nova propriedade
-}) {
+}: SidebarItemProps) {
 	// Estado para controlar o hover
 	const [isHovered, setIsHovered] = useState(false);
 

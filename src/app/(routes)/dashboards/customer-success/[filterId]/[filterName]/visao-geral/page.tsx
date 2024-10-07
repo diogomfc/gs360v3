@@ -11,6 +11,8 @@ import { ProgramList } from './_components/program-list';
 import { RecentInitiatives } from './_components/recent-iniciatives';
 import { TotalInitiatives } from './_components/total-initiatives';
 
+import { motion } from 'framer-motion';
+
 interface JiraFilterDetailsProps {
 	params: { filterId: string; filterName: string };
 }
@@ -20,8 +22,50 @@ export default function JiraFilterDetails({ params }: JiraFilterDetailsProps) {
 
 	const { data: jiraData, isLoading, isError } = useJiraFilter(filterId);
 
-	if (isLoading) return <div>Loading...</div>;
-	if (isError) return <div>Error loading filter details</div>;
+	if (isLoading)
+		return (
+			<motion.div
+				className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-75"
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				exit={{ opacity: 0 }}
+			>
+				<motion.div
+					className="flex flex-col items-center justify-center gap-4"
+					animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
+					transition={{
+						repeat: Number.POSITIVE_INFINITY,
+						duration: 1.5,
+						ease: 'easeInOut',
+					}}
+				>
+					<Image
+						src="/assets/icons/icon-chart.svg"
+						alt="Loading icon"
+						width={100}
+						height={100}
+					/>
+					<motion.p
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						transition={{
+							duration: 0.8,
+							repeat: Number.POSITIVE_INFINITY,
+							repeatDelay: 1,
+						}}
+					>
+						Carregando...
+					</motion.p>
+				</motion.div>
+			</motion.div>
+		);
+
+	if (isError)
+		return (
+			<p className="text-sm text-muted-foreground">
+				Erro ao carregar filtros: {String(isError)}
+			</p>
+		);
 
 	// Extrai os 'Produto Counts' dos dados recebidos
 	const produtoCounts = Object.entries(jiraData?.produtoCounts || {});
