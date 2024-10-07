@@ -120,7 +120,7 @@ export default function Login() {
 									size="sm"
 									asChild
 								>
-									<Link href="/auth/sign-up" className="pl-1">
+									<Link href="/" className="pl-1">
 										Criar uma conta
 									</Link>
 								</Button>
@@ -129,8 +129,9 @@ export default function Login() {
 
 						<div className="text-center">
 							<p className="text-xs text-muted-foreground">
-								Ao usar o Gestão 360° você concorda com os Termos de Serviço e a
-								Política de Privacidade
+								O Gestão 360° está atualmente em fase de desenvolvimento. Esta
+								versão é destinada exclusivamente para uso interno da Eccox
+								Tecnologia.
 							</p>
 						</div>
 					</div>
