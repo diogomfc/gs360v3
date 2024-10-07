@@ -187,21 +187,6 @@ function formatIssues(issues: JiraIssue[]) {
 }
 
 // Função auxiliar para extrair a descrição
-// function extractDescription(description: any): string {
-// 	if (typeof description === 'string') {
-// 		return description;
-// 	} else if (description?.content) {
-// 		return description.content
-// 			.map((paragraph: any) =>
-// 				paragraph.content.map((text: any) => text.text).join(' '),
-// 			)
-// 			.join(' ');
-// 	} else {
-// 		return 'Sem descrição';
-// 	}
-// }
-
-// Função auxiliar para extrair a descrição
 function extractDescription(description: any): string {
 	if (typeof description === 'string') {
 		return description;
