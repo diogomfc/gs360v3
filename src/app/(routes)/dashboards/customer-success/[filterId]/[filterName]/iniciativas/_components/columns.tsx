@@ -54,22 +54,22 @@ export const columns: ColumnDef<JiraIssue>[] = [
 	// 	enableHiding: false,
 	// },
 
-	// coluna 'key' do jira
-	// {
-	// 	accessorKey: 'key',
-	// 	header: ({ column }) => (
-	// 		<DataTableColumnHeader
-	// 			className="text-xs"
-	// 			column={column}
-	// 			title="Id-Jira"
-	// 		/>
-	// 	),
-	// 	cell: ({ row }) => (
-	// 		<div className="w-[40px] text-[11px]">{row.getValue('key')}</div>
-	// 	), // Aqui, você deve usar 'id' em vez de 'key'
-	// 	enableSorting: false,
-	// 	enableHiding: false,
-	// },
+	//coluna 'key' do jira
+	{
+		accessorKey: 'key',
+		header: ({ column }) => (
+			<DataTableColumnHeader
+				className="text-xs"
+				column={column}
+				title="Id-Jira"
+			/>
+		),
+		cell: ({ row }) => (
+			<div className="w-[40px] text-[11px]">{row.getValue('key')}</div>
+		), // Aqui, você deve usar 'id' em vez de 'key'
+		enableSorting: false,
+		enableHiding: false,
+	},
 
 	// coluna logo do cliente
 	{

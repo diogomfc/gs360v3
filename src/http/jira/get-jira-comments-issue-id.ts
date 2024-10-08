@@ -40,14 +40,26 @@ export interface GetJiraCommentsResponse {
 // Função para buscar comentários de uma issue pelo ID
 export async function getJiraCommentsByIssueId(issueId: string) {
 	// Fazendo uma requisição GET para obter os comentários
-	return api.get<GetJiraCommentsResponse>(`/issues/${issueId}/comments`);
+	return api.get<GetJiraCommentsResponse>(`/jira/issues/${issueId}/comments`);
 }
 
 // Hook do react-query para buscar os comentários de uma issue
+// export function useJiraComments(issueId: string) {
+// 	return useQuery({
+// 		queryKey: ['get-jira-comments', issueId],
+// 		queryFn: () => getJiraCommentsByIssueId(issueId),
+// 		enabled: !!issueId, // Executa a query apenas se o issueId estiver disponível
+// 	});
+// }
+
 export function useJiraComments(issueId: string) {
 	return useQuery({
 		queryKey: ['get-jira-comments', issueId],
-		queryFn: () => getJiraCommentsByIssueId(issueId),
+		queryFn: async () => {
+			const data = await getJiraCommentsByIssueId(issueId);
+			console.log('Comments data:', data); // Inspecione a resposta da API aqui
+			return data;
+		},
 		enabled: !!issueId, // Executa a query apenas se o issueId estiver disponível
 	});
 }

@@ -29,6 +29,8 @@ import { useDataLimite } from '@/hooks/use-data-limite';
 import { usePriority } from '@/hooks/use-prioridade';
 import { Separator } from '@radix-ui/react-separator';
 import { logosCliente, priorities, statuses } from '../../../../../../data';
+
+import JiraComments from './atividades-issue';
 import { RadialChartWithLogoCliente } from './radial-chart-with-logo-cliente';
 
 interface JiraIssueModalProps {
@@ -48,6 +50,7 @@ interface JiraIssueModalProps {
 	produto: string;
 	priority: string;
 	dataLimite: string;
+	keyIssue: string;
 }
 
 // Função para obter o logo do cliente a partir dos dados centralizados
@@ -91,6 +94,7 @@ export function JiraIssueModal({
 	produto,
 	priority,
 	dataLimite,
+	keyIssue,
 }: JiraIssueModalProps) {
 	const logo = getLogoByCliente(cliente); // Obtém o logo do cliente
 	const { icon: statusIcon, color: statusColor } = getStatusDetails(status); // Obtém os detalhes do status
@@ -322,8 +326,8 @@ export function JiraIssueModal({
 									</AccordionContent>
 								</AccordionItem>
 							</Card>
-							{/*  Macro do plano */}
-							<Card className="flex items-center col-span-6 gap-4 p-0 rounded-md">
+							{/*  Macro do plano - acessar a rota http://localhost:3000/api/jira/issues/CS-25/comments */}
+							{/* <Card className="flex items-center col-span-6 gap-4 p-0 rounded-md">
 								<AccordionItem
 									value="item-3"
 									className=" w-full border-none px-4"
@@ -338,11 +342,27 @@ export function JiraIssueModal({
 										<Card className="rounded-sm w-full">
 											<CardContent className="flex items-center p-0">
 												<span className="p-5 text-xs ">
-													Macro do Plano não definido.
+													Mostrar a listagem de comentários do Jira associado a
+													issue
+
+											
 												</span>
 											</CardContent>
 										</Card>
 									</AccordionContent>
+								</AccordionItem>
+							</Card> */}
+							<Card className="flex items-center col-span-6 gap-4 p-0 rounded-md">
+								<AccordionItem
+									value="item-3"
+									className="w-full border-none px-4"
+								>
+									<AccordionTrigger className="text-left hover:no-underline hover:text-[#0862B1]">
+										<span className="font-semibold text-[12px]">
+											Macro do Plano
+										</span>
+									</AccordionTrigger>
+									<JiraComments issueId={keyIssue} />
 								</AccordionItem>
 							</Card>
 						</Accordion>
