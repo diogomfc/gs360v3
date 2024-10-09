@@ -226,116 +226,124 @@ export default function DashboardModal({
 				</DialogHeader>
 				<div className="grid grid-cols-3 gap-4">
 					{/* Resizable Panel Group for "Escopo e Status Geral" and "Macro do Plano" */}
-					<ResizablePanelGroup
-						direction="vertical"
-						className="col-span-2 max-h-full min-h-[600px] max-w-full rounded-2xl border"
-					>
-						<ResizablePanel defaultSize={200}>
-							<Card>
-								<CardHeader className="pb-4">
-									<CardTitle className="text-sm font-bold flex justify-between items-center">
-										<div>Escopo E Status Geral</div>
-										{/* Status, prioridade, risco, impacto e responsável */}
-										<div className="flex gap-2">
-											{/* Status */}
-											<div
-												title={`Status: ${status}`}
-												className="text-xs rounded-sm flex py-1 px-2 items-center justify-center gap-1 border cursor-help"
-												style={{
-													color: statusColor,
-													backgroundColor: `${statusColor}20`,
-												}}
-											>
-												{statusIcon}
-												<span className="text-xs">{status}</span>
-											</div>
-											{/* Status prioridade */}
-											<div
-												title={`Prioridade: ${priorityData.label}`}
-												className="flex items-center justify-center cursor-help"
-											>
-												<div
-													className="text-xs rounded-sm flex p-1 items-center justify-center gap-1 border"
+
+					{/* Escopo E Status Geral */}
+					<Card className="col-span-2 rounded-2xl">
+						<CardHeader className="pb-4">
+							<CardTitle className="text-sm font-bold flex justify-between items-center">
+								<div>Escopo e status geral</div>
+								{/* Status, prioridade, risco, impacto e responsável */}
+								<div className="flex gap-2">
+									{/* Status */}
+									<div
+										title={`Status: ${status}`}
+										className="text-xs rounded-sm flex py-1 px-2 items-center justify-center gap-1 border cursor-help"
+										style={{
+											color: statusColor,
+											backgroundColor: `${statusColor}20`,
+										}}
+									>
+										{statusIcon}
+										<span className="text-xs font-normal">{status}</span>
+									</div>
+									{/* Status prioridade */}
+									<div
+										title={`Prioridade: ${priorityData.label}`}
+										className="flex items-center justify-center cursor-help"
+									>
+										<div
+											className="text-xs rounded-sm flex p-1 items-center justify-center gap-1 border"
+											style={{
+												backgroundColor: `${priorityData.color}20`,
+												color: priorityData.color,
+											}}
+										>
+											{priorityData.icon ? (
+												<priorityData.icon
+													className="h-4 w-4 text-muted-foreground/60"
 													style={{
-														backgroundColor: `${priorityData.color}20`,
 														color: priorityData.color,
+														fill: priorityData.color,
+														fillOpacity: 0.1,
 													}}
-												>
-													{priorityData.icon ? (
-														<priorityData.icon
-															className="h-4 w-4 text-muted-foreground/60"
-															style={{
-																color: priorityData.color,
-																fill: priorityData.color,
-																fillOpacity: 0.1,
-															}}
-														/>
-													) : (
-														<Flame
-															className="h-4 w-4 text-muted-foreground/60"
-															style={{
-																color: priorityData.color,
-																fill: priorityData.color,
-																fillOpacity: 0.1,
-															}}
-														/>
-													)}
-													<span className="mr-1">{priorityData.label}</span>
-												</div>
-											</div>
-											{/* Risco */}
-											<div
-												title={`Risco: ${risco}`}
-												className={` border rounded-sm bg-${risco === 'Sim' ? 'red' : 'green'}-100 text-${risco === 'Sim' ? 'red' : 'green'}-800 cursor-help flex items-center justify-center `}
-											>
-												<div className="text-xs  flex p-1 items-center justify-center gap-1 ">
-													<Siren className="h-4 w-4" />
-													<span className="mr-1">{risco}</span>
-												</div>
-											</div>
-
-											{/* Impacto */}
-											<div
-												title={`Impacto: ${impacto}`}
-												className={` border rounded-sm bg-${impacto === 'alto' ? 'red' : 'yellow'}-100 text-${impacto === 'alto' ? 'red' : 'yellow'}-800 cursor-help flex items-center justify-center `}
-											>
-												<div className="text-xs  flex p-1 items-center justify-center gap-1 ">
-													<TriangleAlert className="h-4 w-4" />
-													<span className="mr-1">{impacto}</span>
-												</div>
-											</div>
-										</div>
-
-										{/* Responsável */}
-										<div className="flex items-center">
-											<Avatar className="flex h-6 w-6 items-center justify-center space-y-0 border">
-												<AvatarImage
-													src={responsavel?.avatarUrls}
-													alt="Avatar"
-													className="h-6 w-6"
 												/>
-												<AvatarFallback className="text-xs text-muted-foreground">
-													{responsavel?.displayName?.charAt(0).toUpperCase()}
-												</AvatarFallback>
-											</Avatar>
-											<div className="flex flex-col">
-												<span className="ml-2 text-[12px] text-xs ">
-													{responsavel?.displayName || reporter?.displayName}
-													{/* Exibe o assignee se não houver responsável */}
-												</span>
-												<span className="ml-2 text-[12px] text-xs  text-muted-foreground">
-													{responsavel?.emailAddress ||
-														reporter?.emailAddress ||
-														'sem email'}
-													{/* Exibe 'sem email' se não houver responsável */}
-												</span>
+											) : (
+												<Flame
+													className="h-4 w-4 text-muted-foreground/60"
+													style={{
+														color: priorityData.color,
+														fill: priorityData.color,
+														fillOpacity: 0.1,
+													}}
+												/>
+											)}
+											<span className="mr-1 font-normal">
+												{priorityData.label}
+											</span>
+										</div>
+									</div>
+									{/* Risco */}
+									{risco === 'Sim' && (
+										<div
+											title={`Risco: ${risco}`}
+											className="border rounded-sm bg-red-100 text-red-800 cursor-help flex items-center justify-center"
+										>
+											<div className="text-xs flex p-1 items-center justify-center gap-1">
+												<Siren className="h-4 w-4" />
+												<span className="mr-1 font-normal">{risco}</span>
 											</div>
 										</div>
-									</CardTitle>
-								</CardHeader>
+									)}
+
+									{/* Impacto */}
+									{['alto', 'médio', 'baixo'].includes(impacto) && (
+										<div
+											title={`Impacto: ${impacto}`}
+											className={`border rounded-sm bg-${impacto === 'alto' ? 'red' : impacto === 'médio' ? 'yellow' : 'green'}-100 text-${impacto === 'alto' ? 'red' : impacto === 'médio' ? 'yellow' : 'green'}-800 cursor-help flex items-center justify-center`}
+										>
+											<div className="text-xs flex p-1 items-center justify-center gap-1">
+												<TriangleAlert className="h-4 w-4" />
+												<span className="mr-1 font-normal">{impacto}</span>
+											</div>
+										</div>
+									)}
+								</div>
+
+								{/* Responsável */}
+								<div className="flex items-center">
+									<Avatar className="flex h-6 w-6 items-center justify-center space-y-0 border">
+										<AvatarImage
+											src={responsavel?.avatarUrls}
+											alt="Avatar"
+											className="h-6 w-6"
+										/>
+										<AvatarFallback className="text-xs font-normal text-muted-foreground">
+											{responsavel?.displayName?.charAt(0).toUpperCase()}
+										</AvatarFallback>
+									</Avatar>
+									<div className="flex flex-col">
+										<span className="ml-2 text-[12px] text-xs ">
+											{responsavel?.displayName || reporter?.displayName}
+											{/* Exibe o assignee se não houver responsável */}
+										</span>
+										<span className="ml-2 text-[12px] text-xs font-normal text-muted-foreground">
+											{responsavel?.emailAddress ||
+												reporter?.emailAddress ||
+												'sem email'}
+											{/* Exibe 'sem email' se não houver responsável */}
+										</span>
+									</div>
+								</div>
+							</CardTitle>
+						</CardHeader>
+
+						<ResizablePanelGroup
+							direction="vertical"
+							className="min-h-[550px] max-h-[455px]"
+						>
+							<ResizablePanel defaultSize={50}>
 								<CardContent>
-									<ScrollArea className="h-[520px]">
-										{/* Seus dados do escopo e status */}
+									<ScrollArea className="h-[480px]">
 										{/* alcance */}
 										<div className="border border-b-gray-100 p-2 mb-2 rounded-sm">
 											<div className="text-sm font-semibold flex items-center mb-2">
@@ -356,7 +364,7 @@ export default function DashboardModal({
 										<div className="border border-b-gray-100 p-2 mb-2 rounded-sm">
 											<div className="text-sm font-semibold flex items-center mb-2">
 												<GitCommitHorizontal className="h-4 w-4 inline mr-2" />
-												Estado Inicial
+												Estado inicial
 											</div>
 
 											<p className="text-xs text-muted-foreground ">
@@ -372,7 +380,7 @@ export default function DashboardModal({
 										<div className="border border-b-gray-100 p-2 mb-2 rounded-sm">
 											<div className="text-sm font-semibold flex items-center mb-2">
 												<ActivityIcon className="h-4 w-4 inline mr-2" />
-												Estado Atual
+												Estado atual
 											</div>
 
 											<p className="text-xs text-muted-foreground ">
@@ -413,39 +421,38 @@ export default function DashboardModal({
 										</div>
 									</ScrollArea>
 								</CardContent>
-							</Card>
-						</ResizablePanel>
+							</ResizablePanel>
 
-						<ResizableHandle withHandle className="" />
+							<ResizableHandle withHandle className="mt-4" />
+							{/* Macro do Plano */}
+							<ResizablePanel defaultSize={50} className="mb-4 ">
+								<div className="rounded-b-none border-b-0 rounded-t-2xl border-t h-[350px]">
+									<CardHeader className="pb-4">
+										<CardTitle className="text-sm font-bold flex justify-between items-center">
+											<div className="flex gap-1">
+												<span className="font-bold">Macro do plano</span>
+												<span className="text-muted-foreground font-normal">
+													- Acompanhe o progresso das atividades
+												</span>
+											</div>
+										</CardTitle>
+									</CardHeader>
 
-						<ResizablePanel
-							defaultSize={200}
-							className="shadow-lg shadow-black/25"
-						>
-							<Card className="">
-								<CardHeader className="pb-4">
-									<CardTitle className="text-sm font-bold flex justify-between items-center">
-										<div className="flex gap-1">
-											<span className="font-bold">Macro do Plano</span>
-											<span className="text-muted-foreground font-normal">
-												Acompanhe o progresso das atividades
-											</span>
-										</div>
-									</CardTitle>
-								</CardHeader>
-								<CardContent>
-									<ScrollArea className="h-[520px]">
-										{/* Jira comments */}
-										<JiraComments issueId={keyIssue} />
-									</ScrollArea>
-								</CardContent>
-							</Card>
-						</ResizablePanel>
-					</ResizablePanelGroup>
+									<CardContent>
+										<ScrollArea className="h-[445px]">
+											{/* Jira comments */}
+											<JiraComments issueId={keyIssue} />
+										</ScrollArea>
+									</CardContent>
+								</div>
+							</ResizablePanel>
+						</ResizablePanelGroup>
+					</Card>
 
-					{/* Card fixo de Evolução */}
-					<Card className="col-span-1 row-span-2 mb-4">
-						<div className="flex items-center my-4 mx-2">
+					{/* Card Evolução */}
+
+					<Card className="col-span-1 row-span-2 mb-4 rounded-2xl">
+						<header className="flex items-center my-4 mx-2">
 							<div className="flex items-center justify-center mb-4">
 								<div className="w-24 h-24">
 									<RadialChartWithLogoCliente
@@ -517,34 +524,43 @@ export default function DashboardModal({
 									</div>
 								</div>
 							</div>
-						</div>
-						<div className="flex flex-col justify-between">
-							<div className="rounded-b-none border-b-0 rounded-t-2xl border-t">
-								<CardHeader className="pb-4">
-									<CardTitle className="text-sm font-bold flex justify-between items-center">
-										Ultimas Atividades
-									</CardTitle>
-								</CardHeader>
-								<CardContent className="text-xs">
-									<ScrollArea className="">
-										<FormattedTextWithCheck text={ultimasAtividades} />
-									</ScrollArea>
-								</CardContent>
-							</div>
+						</header>
+						<ResizablePanelGroup
+							direction="vertical"
+							className="rounded-2xl border max-h-[480px]"
+						>
+							<ResizablePanel defaultSize={50}>
+								<>
+									<CardHeader className="pb-4">
+										<CardTitle className="text-sm font-bold flex justify-between items-center">
+											Ultimas atividades
+										</CardTitle>
+									</CardHeader>
+									<CardContent className="text-xs">
+										<ScrollArea className="h-[455px]">
+											<FormattedTextWithCheck text={ultimasAtividades} />
+										</ScrollArea>
+									</CardContent>
+								</>
+							</ResizablePanel>
 
-							<div className="rounded-b-none border-b-0 rounded-t-2xl border-t">
-								<CardHeader className="pb-4">
-									<CardTitle className="text-sm font-bold flex justify-between items-center">
-										Próximas Atividades
-									</CardTitle>
-								</CardHeader>
-								<CardContent className="text-xs">
-									<ScrollArea className="">
-										<FormattedTextWithCalendar text={proximasAtividades} />
-									</ScrollArea>
-								</CardContent>
-							</div>
-						</div>
+							<ResizableHandle withHandle className="mt-4" />
+
+							<ResizablePanel defaultSize={50} className=" mb-4">
+								<div className="rounded-b-none border-b-0 rounded-t-2xl border-t h-[350px]">
+									<CardHeader className="pb-4">
+										<CardTitle className="text-sm font-bold flex justify-between items-center">
+											Próximas atividades
+										</CardTitle>
+									</CardHeader>
+									<CardContent className="text-xs">
+										<ScrollArea className="h-[455px]">
+											<FormattedTextWithCalendar text={proximasAtividades} />
+										</ScrollArea>
+									</CardContent>
+								</div>
+							</ResizablePanel>
+						</ResizablePanelGroup>
 					</Card>
 				</div>
 			</DialogContent>

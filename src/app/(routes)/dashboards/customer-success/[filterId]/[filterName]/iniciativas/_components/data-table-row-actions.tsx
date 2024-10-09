@@ -79,7 +79,8 @@ export function DataTableRowActions<TData>({
 							<span className="text-xs">Detalhes geral</span>
 						</div>
 					</DropdownMenuItem>
-					<DropdownMenuItem
+
+					{/* <DropdownMenuItem
 						className="cursor-pointer"
 						onSelect={() => openModal('Status Geral', jiraIssue.status)}
 					>
@@ -114,30 +115,11 @@ export function DataTableRowActions<TData>({
 							<FileCheck2 className="w-4 h-4 mr-2" />
 							<span className="text-xs">Macro do Plano</span>
 						</div>
-					</DropdownMenuItem>
+					</DropdownMenuItem> */}
 				</DropdownMenuContent>
 			</DropdownMenu>
 
 			{/* Modal Dinâmico */}
-			{/* <JiraIssueModal
-				isOpen={modalOpen}
-				onClose={closeModal}
-				title={modalTitle}
-				description={modalDescription}
-				cliente={jiraIssue.cliente}
-				descricao={jiraIssue.descricao}
-				estadoAtual={jiraIssue.estadoAtual}
-				estadoInicial={jiraIssue.estadoInicial}
-				ultimasAtividades={jiraIssue.ultimasAtividades}
-				proximasAtividades={jiraIssue.proximasAtividades}
-				status={jiraIssue.status}
-				riscoOuIssue={jiraIssue.riscoOuIssue}
-				summary={jiraIssue.summary}
-				produto={jiraIssue.produto}
-				priority={jiraIssue.priority}
-				dataLimite={jiraIssue.dataLimite}
-				keyIssue={jiraIssue.key}
-			/> */}
 
 			<DashboardModal
 				isOpen={modalOpen}

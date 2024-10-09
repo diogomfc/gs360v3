@@ -64,10 +64,10 @@ export function RadialChartWithLogoCliente({
 										{logoUrl && (
 											<image
 												href={logoUrl}
-												x={viewBox.cx ? viewBox.cx - 15 : 0} // Centralizar horizontalmente
-												y={viewBox.cy ? viewBox.cy - 15 : 0} // Centralizar verticalmente
-												width="30" // Largura da imagem
-												height="30" // Altura da imagem
+												x={viewBox.cx ? viewBox.cx - 17 : 0} // Centralizar horizontalmente
+												y={viewBox.cy ? viewBox.cy - 17 : 0} // Centralizar verticalmente
+												width="34" // Largura da imagem
+												height="34" // Altura da imagem
 												preserveAspectRatio="xMidYMid slice"
 											/>
 										)}
