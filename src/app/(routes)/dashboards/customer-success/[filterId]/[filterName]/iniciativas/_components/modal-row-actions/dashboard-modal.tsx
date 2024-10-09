@@ -339,7 +339,7 @@ export default function DashboardModal({
 
 						<ResizablePanelGroup
 							direction="vertical"
-							className="min-h-[550px] max-h-[455px]"
+							className="min-h-[550px] max-h-[455px] "
 						>
 							<ResizablePanel defaultSize={50}>
 								<CardContent>
@@ -425,7 +425,10 @@ export default function DashboardModal({
 
 							<ResizableHandle withHandle className="mt-4" />
 							{/* Macro do Plano */}
-							<ResizablePanel defaultSize={50} className="mb-4 ">
+							<ResizablePanel
+								defaultSize={50}
+								className="mb-4 bg-gradient-to-b from-[#f7f8fa] to-white"
+							>
 								<div className="rounded-b-none border-b-0 rounded-t-2xl border-t h-[350px]">
 									<CardHeader className="pb-4">
 										<CardTitle className="text-sm font-bold flex justify-between items-center">
@@ -527,9 +530,9 @@ export default function DashboardModal({
 						</header>
 						<ResizablePanelGroup
 							direction="vertical"
-							className="rounded-2xl border max-h-[480px]"
+							className="rounded-2xl border max-h-[480px]  bg-gradient-to-b from-[#eefffa] to-white"
 						>
-							<ResizablePanel defaultSize={50}>
+							<ResizablePanel defaultSize={50} className="">
 								<>
 									<CardHeader className="pb-4">
 										<CardTitle className="text-sm font-bold flex justify-between items-center">
@@ -544,9 +547,12 @@ export default function DashboardModal({
 								</>
 							</ResizablePanel>
 
-							<ResizableHandle withHandle className="mt-4" />
+							<ResizableHandle withHandle className="mt-4 " />
 
-							<ResizablePanel defaultSize={50} className=" mb-4">
+							<ResizablePanel
+								defaultSize={50}
+								className=" mb-4 bg-gradient-to-b from-[#eefaff] to-white"
+							>
 								<div className="rounded-b-none border-b-0 rounded-t-2xl border-t h-[350px]">
 									<CardHeader className="pb-4">
 										<CardTitle className="text-sm font-bold flex justify-between items-center">
