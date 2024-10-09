@@ -57,7 +57,7 @@ export function useJiraComments(issueId: string) {
 		queryKey: ['get-jira-comments', issueId],
 		queryFn: async () => {
 			const data = await getJiraCommentsByIssueId(issueId);
-			console.log('Comments data:', data); // Inspecione a resposta da API aqui
+			//console.log('Comments data:', data); // Inspecione a resposta da API aqui
 			return data;
 		},
 		enabled: !!issueId, // Executa a query apenas se o issueId estiver disponível

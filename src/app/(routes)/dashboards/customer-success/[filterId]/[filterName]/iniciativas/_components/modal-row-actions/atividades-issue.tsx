@@ -1,54 +1,7 @@
-// import { useJiraComments } from '@/http/jira/get-jira-comments-issue-id';
-// import type React from 'react';
-
-// interface JiraCommentsProps {
-// 	keyIssue: string;
-// }
-
-// const JiraComments: React.FC<JiraCommentsProps> = ({ keyIssue }) => {
-// 	// Utilizando o hook para buscar os comentários
-// 	const { data, isLoading, isError } = useJiraComments(keyIssue);
-
-// 	if (isLoading) return <p>Carregando comentários...</p>;
-// 	if (isError) return <p>Erro ao carregar comentários.</p>;
-
-// 	return (
-// 		<div>
-// 			<h2>Comentários da Issue: {keyIssue}</h2>
-// 			<ul>
-// 				{data?.comments?.map((comment) => (
-// 					<li key={comment.id}>
-// 						<div>
-// 							<img
-// 								src={comment.author.avatarUrls['48x48']}
-// 								alt={`${comment.author.displayName}'s avatar`}
-// 								style={{ borderRadius: '50%', marginRight: '10px' }}
-// 							/>
-// 							<strong>{comment.author.displayName}</strong>
-// 						</div>
-// 						<div>
-// 							{comment.body.content.map((contentBlock, index) =>
-// 								contentBlock.content.map((textContent) => (
-// 									<span key={`${index}-${textContent.text}`}>
-// 										{textContent.text}
-// 									</span>
-// 								)),
-// 							)}
-// 						</div>
-// 						<p>Publicado em: {new Date(comment.created).toLocaleString()}</p>
-// 					</li>
-// 				))}
-// 			</ul>
-// 		</div>
-// 	);
-// };
-
-// export default JiraComments;
-
+import { AccordionContent } from '@/components/ui/accordion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
 import { useJiraComments } from '@/http/jira/get-jira-comments-issue-id';
-import { SmileIcon, ThumbsUpIcon } from 'lucide-react';
+import { KeyboardOff, SmileIcon } from 'lucide-react';
 
 interface JiraComment {
 	id: string;
@@ -84,12 +37,31 @@ interface JiraCommentsProps {
 export default function JiraComments({ issueId }: JiraCommentsProps) {
 	const { data, isLoading, error } = useJiraComments(issueId);
 
-	if (isLoading) return <p>Carregando comentários...</p>;
-	if (error) return <p>Erro ao carregar comentários.</p>;
+	if (isLoading)
+		return (
+			<p className="text-xs text-muted-foreground">Carregando atividades...</p>
+		);
+
+	if (error)
+		return (
+			<p className="text-xs text-muted-foreground">
+				Erro ao carregar comentários.
+			</p>
+		);
+
+	// Verifica se há comentários
+	if (!data?.comments?.length) {
+		return (
+			<div className="flex flex-col items-center justify-center h-full text-center text-muted-foreground space-y-2">
+				<KeyboardOff className="w-10 h-10" />
+				<p className="text-sm">Nenhuma atividade encontrada</p>
+			</div>
+		);
+	}
 
 	return (
 		<div className="space-y-4">
-			{data?.comments?.map((comment: JiraComment) => (
+			{data.comments.map((comment: JiraComment) => (
 				<div key={comment.id} className="flex items-start space-x-3">
 					<Avatar className="w-6 h-6">
 						<AvatarImage
@@ -98,7 +70,7 @@ export default function JiraComments({ issueId }: JiraCommentsProps) {
 						/>
 						<AvatarFallback>{comment.author.displayName[0]}</AvatarFallback>
 					</Avatar>
-					<div className="flex-1 mb-4">
+					<div className="flex-1">
 						<div className="flex items-center justify-between">
 							<div>
 								<p className="font-semibold text-xs">
@@ -112,10 +84,6 @@ export default function JiraComments({ issueId }: JiraCommentsProps) {
 						<p className="mt-1 text-xs">
 							{comment.body.content[0].content[0].text}
 						</p>
-						{/* <div className="flex items-center mt-2 space-x-2">
-							<ThumbsUpIcon className="w-4 h-4 text-muted-foreground" />
-							<SmileIcon className="w-4 h-4 text-muted-foreground" />
-						</div> */}
 					</div>
 				</div>
 			))}

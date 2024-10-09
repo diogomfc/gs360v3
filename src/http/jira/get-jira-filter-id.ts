@@ -8,8 +8,24 @@ export interface JiraIssue {
 	summary: string;
 	status: string;
 	priority: string;
-	assignee: string;
-	reporter: string;
+	assignee: {
+		accountId: string;
+		displayName: string;
+		emailAddress: string;
+		avatarUrls: string;
+	};
+	reporter: {
+		accountId: string;
+		displayName: string;
+		emailAddress: string;
+		avatarUrls: string;
+	};
+	responsavel: {
+		accountId: string;
+		displayName: string;
+		emailAddress: string;
+		avatarUrls: string;
+	};
 	labels: string[];
 	resolution: string;
 	created: string;

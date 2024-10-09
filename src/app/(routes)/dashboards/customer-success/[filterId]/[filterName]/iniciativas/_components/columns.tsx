@@ -55,21 +55,21 @@ export const columns: ColumnDef<JiraIssue>[] = [
 	// },
 
 	//coluna 'key' do jira
-	{
-		accessorKey: 'key',
-		header: ({ column }) => (
-			<DataTableColumnHeader
-				className="text-xs"
-				column={column}
-				title="Id-Jira"
-			/>
-		),
-		cell: ({ row }) => (
-			<div className="w-[40px] text-[11px]">{row.getValue('key')}</div>
-		), // Aqui, você deve usar 'id' em vez de 'key'
-		enableSorting: false,
-		enableHiding: false,
-	},
+	// {
+	// 	accessorKey: 'key',
+	// 	header: ({ column }) => (
+	// 		<DataTableColumnHeader
+	// 			className="text-xs"
+	// 			column={column}
+	// 			title="Id-Jira"
+	// 		/>
+	// 	),
+	// 	cell: ({ row }) => (
+	// 		<div className="w-[40px] text-[11px]">{row.getValue('key')}</div>
+	// 	), // Aqui, você deve usar 'id' em vez de 'key'
+	// 	enableSorting: false,
+	// 	enableHiding: false,
+	// },
 
 	// coluna logo do cliente
 	{
@@ -147,21 +147,22 @@ export const columns: ColumnDef<JiraIssue>[] = [
 			<DataTableColumnHeader column={column} title="Responsável" />
 		),
 		cell: ({ row }) => {
-			const reporter = row.original.reporter;
+			const reporter = row.original.reporter.displayName;
 
 			const nomes = reporter.split(' ');
 			const primeiroNome = nomes[0];
 			const ultimoNome = nomes[nomes.length - 1];
 			const nomeFormatado = `${primeiroNome} ${ultimoNome}`;
+			const AvatarResponsavel = row.original.reporter.avatarUrls;
 
 			return (
 				<div className="flex items-center">
 					<Avatar className="flex h-6 w-6 items-center justify-center space-y-0 border">
-						{/* <AvatarImage
-							src={}
+						<AvatarImage
+							src={AvatarResponsavel}
 							alt="Avatar"
 							className="h-6 w-6"
-						/> */}
+						/>
 						<AvatarFallback className="text-xs text-muted-foreground">
 							{reporter.charAt(0).toUpperCase()}
 						</AvatarFallback>

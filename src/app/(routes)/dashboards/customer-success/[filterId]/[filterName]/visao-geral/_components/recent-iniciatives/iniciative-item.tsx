@@ -4,6 +4,7 @@ import { FileClock } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { logosCliente, statuses } from '../../../../../../data';
+import DashboardModal from '../../../iniciativas/_components/modal-row-actions/dashboard-modal';
 import { JiraIssueModal } from '../../../iniciativas/_components/modal-row-actions/data-Issue-modal';
 import { DateIcon } from './date-icon';
 
@@ -164,23 +165,49 @@ export function InitiativeItem({
 
 			{/* Modal Dinâmico */}
 			{modalData && (
-				<JiraIssueModal
+				// <JiraIssueModal
+				// 	isOpen={modalOpen}
+				// 	onClose={closeModal}
+				// 	title={'Detalhes gerais'}
+				// 	description={modalData.descricao}
+				// 	cliente={modalData.cliente}
+				// 	descricao={modalData.descricao}
+				// 	estadoAtual={modalData.estadoAtual}
+				// 	estadoInicial={modalData.estadoInicial}
+				// 	ultimasAtividades={modalData.ultimasAtividades}
+				// 	proximasAtividades={modalData.proximasAtividades}
+				// 	status={modalData.status}
+				// 	riscoOuIssue={modalData.riscoOuIssue}
+				// 	summary={modalData.summary}
+				// 	produto={modalData.produto}
+				// 	priority={modalData.priority}
+				// 	dataLimite={modalData.dataLimite}
+				// 	keyIssue={modalData.key}
+				// />
+				<DashboardModal
 					isOpen={modalOpen}
 					onClose={closeModal}
 					title={'Detalhes gerais'}
 					description={modalData.descricao}
 					cliente={modalData.cliente}
+					responsavel={modalData.responsavel}
+					reporter={modalData.reporter}
 					descricao={modalData.descricao}
 					estadoAtual={modalData.estadoAtual}
 					estadoInicial={modalData.estadoInicial}
 					ultimasAtividades={modalData.ultimasAtividades}
 					proximasAtividades={modalData.proximasAtividades}
 					status={modalData.status}
+					impacto={modalData.impacto}
+					risco={modalData.risco}
 					riscoOuIssue={modalData.riscoOuIssue}
+					acao={modalData.acao}
 					summary={modalData.summary}
 					produto={modalData.produto}
 					priority={modalData.priority}
 					dataLimite={modalData.dataLimite}
+					startDate={modalData.startDate}
+					keyIssue={modalData.key}
 				/>
 			)}
 		</>

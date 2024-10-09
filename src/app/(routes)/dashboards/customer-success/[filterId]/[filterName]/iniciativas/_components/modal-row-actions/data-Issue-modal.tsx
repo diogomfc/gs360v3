@@ -78,6 +78,17 @@ function getStatusDetails(status: string) {
 	};
 }
 
+// Função para formatar texto com quebras de linha
+const FormattedText = ({ text }: { text: string }) => {
+	return (
+		<div>
+			{text.split('\n').map((item) => {
+				return <p key={item}>{item}</p>;
+			})}
+		</div>
+	);
+};
+
 export function JiraIssueModal({
 	isOpen,
 	onClose,
@@ -267,7 +278,7 @@ export function JiraIssueModal({
 												</CardTitle>
 											</CardHeader>
 											<CardContent className="text-xs pt-2">
-												{estadoInicial}
+												<FormattedText text={estadoInicial} />
 											</CardContent>
 										</Card>
 										<Card className="rounded-sm">
@@ -278,7 +289,7 @@ export function JiraIssueModal({
 												</CardTitle>
 											</CardHeader>
 											<CardContent className="text-xs pt-2">
-												{estadoAtual}
+												<FormattedText text={estadoAtual} />
 											</CardContent>
 										</Card>
 										<Card className="rounded-sm">
@@ -289,7 +300,7 @@ export function JiraIssueModal({
 												</CardTitle>
 											</CardHeader>
 											<CardContent className="text-xs pt-2">
-												{ultimasAtividades}
+												<FormattedText text={ultimasAtividades} />
 											</CardContent>
 										</Card>
 										<Card className="rounded-sm">
@@ -300,7 +311,7 @@ export function JiraIssueModal({
 												</CardTitle>
 											</CardHeader>
 											<CardContent className="text-xs pt-2">
-												{proximasAtividades}
+												<FormattedText text={proximasAtividades} />
 											</CardContent>
 										</Card>
 									</AccordionContent>
@@ -317,6 +328,7 @@ export function JiraIssueModal({
 											Risco / Issue
 										</span>
 									</AccordionTrigger>
+
 									<AccordionContent className="flex">
 										<Card className="rounded-sm w-full">
 											<CardContent className="flex items-center p-0">
