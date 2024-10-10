@@ -6,12 +6,14 @@ import { z } from 'zod';
 // Função para buscar os comentários da issue no Jira
 async function getJiraComments(
 	issueId: string,
+	startAt = 0,
+	maxResults = 1000,
 ): Promise<GetJiraCommentsResponse> {
 	const baseUrl = `https://${process.env.DOMAIN}.atlassian.net`;
 
 	const config = {
 		method: 'get',
-		url: `${baseUrl}/rest/api/3/issue/${issueId}/comment`,
+		url: `${baseUrl}/rest/api/3/issue/${issueId}/comment?startAt=${startAt}&maxResults=${maxResults}&orderBy=-created`,
 		headers: {
 			'Content-Type': 'application/json',
 		},
@@ -41,7 +43,7 @@ export async function GET(
 
 	try {
 		const { issueId } = schema.parse(params);
-		const commentsResponse = await getJiraComments(issueId);
+		const commentsResponse = await getJiraComments(issueId, 0, 1000);
 		return NextResponse.json(commentsResponse, { status: 200 });
 	} catch (error) {
 		return NextResponse.json(

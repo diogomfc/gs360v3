@@ -21,19 +21,31 @@ import { useEffect, useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+
 import { useJiraFilters } from '@/http/jira/get-jira-filter';
+import { useJiraFilter } from '@/http/jira/get-jira-filter-id';
 
 import { Separator } from '@/components/ui/separator';
 import { IconCronograma } from './icons/icon-cronograma';
 import { IconDashboard } from './icons/icon-dashboard';
-import { IconDocumentacao } from './icons/icon-documentacao';
+
 import { IconIniciativas } from './icons/icon-iniciativas';
 import { IconListDashboards } from './icons/icon-lis-dashboards';
 import { NavbarLink } from './nav-bar-link';
 import UserMenu from './user-menu';
 
 export default function SidebarDash() {
-	const { data } = useJiraFilters();
+	const params = useParams();
+	const { filterId, filterName } = params as {
+		filterId: string;
+		filterName: string;
+	};
+
+	//buscar total de filtros
+	const { data: dataJiraFilters } = useJiraFilters();
+	//buscar total de iniciativas pelo id
+	const { data: dataJiraFilter } = useJiraFilter(filterId);
+
 	const [isOpen, setOpen] = useAtom(sidebarOpen);
 	const path = usePathname();
 	const [isHovered, setIsHovered] = useState(false);
@@ -41,9 +53,6 @@ export default function SidebarDash() {
 	// Para simular o loading da rota
 	const router = useRouter();
 	const [isLoadingRoute, setIsLoadingRoute] = useState(false);
-
-	const params = useParams();
-	const { filterId, filterName } = params;
 
 	useEffect(() => {
 		if (path === '/dashboards') {
@@ -87,7 +96,7 @@ export default function SidebarDash() {
 				href: `/dashboards/customer-success/${filterId}/${filterName}/iniciativas`,
 				label: 'Iniciativas',
 				icon: <IconIniciativas width={20} height={20} />,
-				badge: data?.filters?.length || 0,
+				badge: dataJiraFilter?.iniciativas?.length || 0,
 			},
 			{
 				href: `/dashboards/customer-success/${filterId}/${filterName}/cronograma`,
@@ -216,10 +225,10 @@ export default function SidebarDash() {
 								<div className="flex items-center w-full justify-between gap-x-2">
 									Dashboards
 									<Badge className="ml-auto bg-white hover:bg-white border border-[#0862B1] text-[#0862B1] flex items-center justify-center rounded-full h-4 min-w-[1.25rem] px-1 text-[11px]">
-										{data?.filters?.length
-											? data.filters.length > 99
+										{dataJiraFilters?.filters?.length
+											? dataJiraFilters.filters.length > 99
 												? '99+'
-												: data.filters.length
+												: dataJiraFilters.filters.length
 											: '0'}
 									</Badge>
 								</div>

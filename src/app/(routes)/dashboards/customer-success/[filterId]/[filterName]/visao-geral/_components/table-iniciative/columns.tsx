@@ -8,13 +8,16 @@ import type { JiraIssue } from '@/http/jira/get-jira-filter-id';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-import { logosCliente, priorities, statuses } from '../../../../../data';
 import { DataTableColumnHeader } from './data-table-column-header';
 
 import { useDataLimite } from '@/hooks/use-data-limite';
 import { usePriority } from '@/hooks/use-prioridade';
-import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
+
+import {
+	logosCliente,
+	priorities,
+	statuses,
+} from '@/app/(routes)/dashboards/data';
 import { Calendar } from 'lucide-react';
 import { DataTableRowActions } from './data-table-row-actions';
 
@@ -128,15 +131,13 @@ export const columns: ColumnDef<JiraIssue>[] = [
 				<div className="flex items-center space-x-2">
 					{/* Verifica se produto não está vazio antes de renderizar o Badge */}
 					{produto ? (
-						<Badge variant="secondary" className="max-w-[150px] truncate">
+						<Badge variant="secondary" className="">
 							<span className="text-[10px]">{shortenProgramName(produto)}</span>
 						</Badge>
 					) : (
 						<div className="text-muted-foreground text-[10px]">Sem Produto</div>
 					)}
-					<span className="max-w-[400px] truncate font-medium text-xs">
-						{iniciativa}
-					</span>
+					<span className="font-medium text-xs">{iniciativa}</span>
 				</div>
 			);
 		},
@@ -178,7 +179,6 @@ export const columns: ColumnDef<JiraIssue>[] = [
 	},
 
 	// coluna 'status' do jira
-
 	{
 		accessorKey: 'status',
 		header: ({ column }) => (
@@ -208,10 +208,10 @@ export const columns: ColumnDef<JiraIssue>[] = [
 
 					<div className="text-xs rounded-sm px-1">
 						<span
-							className="font-semibold text-xs"
-							style={{
-								color: status.color,
-							}}
+							className="font-normal text-xs "
+							// style={{
+							// 	color: status.color,
+							// }}
 						>
 							{status.label}
 						</span>

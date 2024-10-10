@@ -311,12 +311,17 @@ interface JiraIssue {
 }
 
 // Função para buscar issues no Jira por filtro
-async function getIssuesByFilterId(filterId: string) {
+async function getIssuesByFilterId(
+	filterId: string,
+	startAt = 0,
+	maxResults = 1000,
+) {
 	const baseUrl = `https://${process.env.DOMAIN}.atlassian.net`;
 
 	const config = {
 		method: 'get',
-		url: `${baseUrl}/rest/api/3/search?jql=filter=${filterId}`,
+		//url: `${baseUrl}/rest/api/3/search?jql=filter=${filterId}`,
+		url: `${baseUrl}/rest/api/3/search?jql=filter=${filterId}&startAt=${startAt}&maxResults=${maxResults}`,
 		headers: { 'Content-Type': 'application/json' },
 		auth: {
 			username: process.env.ATLASSIAN_USERNAME,

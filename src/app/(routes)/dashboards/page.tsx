@@ -11,7 +11,7 @@ import CardDashboards from './_components/card-dashboards';
 import { motion } from 'framer-motion';
 
 import { selectedFilterAtom } from '@/hooks/atoms';
-import { set } from 'date-fns';
+
 import { useSetAtom } from 'jotai';
 import Image from 'next/image';
 import PageHeader from '../_components/page-header';
@@ -69,19 +69,6 @@ export default function PageDashboards() {
 	);
 
 	const selectedFilterCount = selectedStatus.size + selectedOwnerIds.size;
-
-	// Simula o início do carregamento
-	// useEffect(() => {
-	// 	setIsLoadingRoute(true);
-
-	// 	// Define um tempo para simular o fim do carregamento (5 segundos)
-	// 	const timer = setTimeout(() => {
-	// 		setIsLoadingRoute(false);
-	// 	}, 10000); // 5000ms = 5 segundos
-
-	// 	// Limpa o timer quando o componente for desmontado
-	// 	return () => clearTimeout(timer);
-	// }, []);
 
 	return (
 		<>

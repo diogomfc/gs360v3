@@ -11,8 +11,8 @@ interface ProgramListProps {
 
 export function ProgramList({ produtoCounts }: ProgramListProps) {
 	return (
-		<Card className="h-[300px] flex flex-col">
-			<div className="rounded-t-lg bg-slate-100 px-5 py-4">
+		<Card className="h-[300px] flex flex-col rounded-lg">
+			<div className="rounded-t-lg bg-slate-100 px-5 py-4 text-sm">
 				<div className="flex justify-between">
 					<div className="flex flex-row items-center justify-center">
 						<h1 className="font-semibold">Produtos</h1>

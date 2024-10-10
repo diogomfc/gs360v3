@@ -5,7 +5,7 @@ import {
 } from '@/app/(routes)/dashboards/data';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
 	Dialog,
@@ -14,19 +14,14 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog';
-import { Progress } from '@/components/ui/progress';
+
 import {
 	ResizableHandle,
 	ResizablePanel,
 	ResizablePanelGroup,
 } from '@/components/ui/resizable';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from '@/components/ui/tooltip';
+
 import { useDataLimite } from '@/hooks/use-data-limite';
 import { usePriority } from '@/hooks/use-prioridade';
 import { format } from 'date-fns';
@@ -36,7 +31,6 @@ import {
 	Calendar,
 	CalendarCheck,
 	CalendarDays,
-	CheckCircle2,
 	ChevronsRight,
 	CircleCheckBig,
 	Dot,
@@ -48,9 +42,8 @@ import {
 	Siren,
 	TrendingUp,
 	TriangleAlert,
-	XCircle,
 } from 'lucide-react';
-import JiraComments from './atividades-issue';
+import { AtividadesIssues } from './atividades-issue';
 import { RadialChartWithLogoCliente } from './radial-chart-with-logo-cliente';
 
 interface DashboardModalProps {
@@ -159,7 +152,7 @@ const FormattedTextWithCheck = ({ text }: { text: string }) => {
 	);
 };
 
-export default function DashboardModal({
+export function DashboardModal({
 	isOpen,
 	onClose,
 	title,
@@ -220,7 +213,7 @@ export default function DashboardModal({
 
 	return (
 		<Dialog open={isOpen} onOpenChange={onClose}>
-			<DialogContent className="max-w-7xl ">
+			<DialogContent className="max-w-7xl max-h-[625px]">
 				<DialogHeader>
 					<DialogTitle className="text-base font-bold">{title}</DialogTitle>
 				</DialogHeader>
@@ -228,7 +221,7 @@ export default function DashboardModal({
 					{/* Resizable Panel Group for "Escopo e Status Geral" and "Macro do Plano" */}
 
 					{/* Escopo E Status Geral */}
-					<Card className="col-span-2 rounded-2xl">
+					<Card className="col-span-2 rounded-2xl h-full">
 						<CardHeader className="pb-4">
 							<CardTitle className="text-sm font-bold flex justify-between items-center">
 								<div>Escopo e status geral</div>
@@ -339,7 +332,7 @@ export default function DashboardModal({
 
 						<ResizablePanelGroup
 							direction="vertical"
-							className="min-h-[550px] max-h-[455px] "
+							className="min-h-[465px] max-h-[455px]  p-0 m-0"
 						>
 							<ResizablePanel defaultSize={50}>
 								<CardContent>
@@ -429,12 +422,12 @@ export default function DashboardModal({
 								defaultSize={50}
 								className="mb-4 bg-gradient-to-b from-[#f7f8fa] to-white"
 							>
-								<div className="rounded-b-none border-b-0 rounded-t-2xl border-t h-[350px]">
+								<div className="rounded-b-none border-b-0 rounded-t-2xl border-t h-auto ">
 									<CardHeader className="pb-4">
 										<CardTitle className="text-sm font-bold flex justify-between items-center">
-											<div className="flex gap-1">
+											<div className="flex gap-1 items-center">
 												<span className="font-bold">Macro do plano</span>
-												<span className="text-muted-foreground font-normal">
+												<span className="text-muted-foreground font-normal text-xs">
 													- Acompanhe o progresso das atividades
 												</span>
 											</div>
@@ -442,9 +435,9 @@ export default function DashboardModal({
 									</CardHeader>
 
 									<CardContent>
-										<ScrollArea className="h-[445px]">
-											{/* Jira comments */}
-											<JiraComments issueId={keyIssue} />
+										<ScrollArea className="h-[350px]">
+											{/* Jira comments atividades */}
+											<AtividadesIssues issueId={keyIssue} />
 										</ScrollArea>
 									</CardContent>
 								</div>
@@ -530,7 +523,7 @@ export default function DashboardModal({
 						</header>
 						<ResizablePanelGroup
 							direction="vertical"
-							className="rounded-2xl border max-h-[480px]  bg-gradient-to-b from-[#eefffa] to-white"
+							className="rounded-2xl border max-h-[395px]  bg-gradient-to-b from-[#eefffa] to-white"
 						>
 							<ResizablePanel defaultSize={50} className="">
 								<>
@@ -553,7 +546,7 @@ export default function DashboardModal({
 								defaultSize={50}
 								className=" mb-4 bg-gradient-to-b from-[#eefaff] to-white"
 							>
-								<div className="rounded-b-none border-b-0 rounded-t-2xl border-t h-[350px]">
+								<div className="rounded-b-none border-b-0 rounded-t-2xl border-t ">
 									<CardHeader className="pb-4">
 										<CardTitle className="text-sm font-bold flex justify-between items-center">
 											Próximas atividades

@@ -15,7 +15,6 @@ import {
 	OctagonPause,
 	Rocket,
 } from 'lucide-react';
-//import type { JiraIssue } from '@/http/jira/get-jira-filter-id';
 import { useMemo } from 'react';
 import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 
@@ -96,27 +95,27 @@ export function OverviewYear({
 			}
 		}
 
-		return dataByMonth;
+		// Filtrar os últimos 6 meses
+		const currentMonthIndex = new Date().getMonth();
+		const lastSixMonthsData = dataByMonth.slice(
+			Math.max(0, currentMonthIndex - 5), // Garantir que sempre mostre 6 meses, mesmo se for o início do ano
+			currentMonthIndex + 1,
+		);
+
+		return lastSixMonthsData;
 	}, [jiraData]);
 
 	// Obtém o índice do mês atual
 	const currentMonthIndex = new Date().getMonth();
 
 	return (
-		<Card className="col-span-4 max-h-[460px] flex flex-col">
-			<CardHeader>
-				<div className="flex justify-between">
-					<div className="flex flex-row items-center justify-center">
-						<h1 className="font-semibold">Total de Iniciativas</h1>
-						<div className="flex items-center justify-center pt-[2px]">
-							<Dot size={16} />
-							<span className="text-xs text-muted-foreground">Mensais</span>
-						</div>
-					</div>
-				</div>
-			</CardHeader>
+		<Card className="col-span-4 max-h-[460px] flex flex-col rounded-lg">
+			<div className="flex flex-col rounded-t-lg bg-slate-100 px-5 py-4">
+				<h1 className="font-semibold text-sm">Total de Iniciativas</h1>
+				<span className="text-xs text-muted-foreground">últimos 6 Meses</span>
+			</div>
+
 			<CardContent className="mb-3 flex-grow overflow-hidden">
-				{' '}
 				{/* Adiciona overflow-hidden */}
 				<ChartContainer config={chartConfig} className="h-full w-full">
 					<BarChart accessibilityLayer data={chartData}>

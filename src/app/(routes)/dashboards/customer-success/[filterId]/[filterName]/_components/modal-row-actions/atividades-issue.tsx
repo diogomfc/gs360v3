@@ -1,9 +1,8 @@
-import { AccordionContent } from '@/components/ui/accordion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useJiraComments } from '@/http/jira/get-jira-comments-issue-id';
-import { KeyboardOff, SmileIcon } from 'lucide-react';
+import { KeyboardOff } from 'lucide-react';
 
-interface JiraComment {
+interface AtividadesIssue {
 	id: string;
 	body: {
 		type: string;
@@ -30,11 +29,11 @@ interface JiraComment {
 	updated: string;
 }
 
-interface JiraCommentsProps {
+interface AtividadesIssuesProps {
 	issueId: string;
 }
 
-export default function JiraComments({ issueId }: JiraCommentsProps) {
+export function AtividadesIssues({ issueId }: AtividadesIssuesProps) {
 	const { data, isLoading, error } = useJiraComments(issueId);
 
 	if (isLoading)
@@ -61,28 +60,28 @@ export default function JiraComments({ issueId }: JiraCommentsProps) {
 
 	return (
 		<div className="space-y-4">
-			{data.comments.map((comment: JiraComment) => (
-				<div key={comment.id} className="flex items-start space-x-3">
+			{data.comments.map((atividade: AtividadesIssue) => (
+				<div key={atividade.id} className="flex items-start space-x-3">
 					<Avatar className="w-6 h-6">
 						<AvatarImage
-							src={comment.author.avatarUrls['32x32']}
-							alt={comment.author.displayName}
+							src={atividade.author.avatarUrls['32x32']}
+							alt={atividade.author.displayName}
 						/>
-						<AvatarFallback>{comment.author.displayName[0]}</AvatarFallback>
+						<AvatarFallback>{atividade.author.displayName[0]}</AvatarFallback>
 					</Avatar>
 					<div className="flex-1">
 						<div className="flex items-center justify-between">
 							<div>
 								<p className="font-semibold text-xs">
-									{comment.author.displayName}
+									{atividade.author.displayName}
 								</p>
 								<p className="text-xs text-muted-foreground">
-									{new Date(comment.created).toLocaleString()}
+									{new Date(atividade.created).toLocaleString()}
 								</p>
 							</div>
 						</div>
 						<p className="mt-1 text-xs">
-							{comment.body.content[0].content[0].text}
+							{atividade.body.content[0].content[0].text}
 						</p>
 					</div>
 				</div>

@@ -75,12 +75,12 @@ export function TotalInitiatives({ jiraData }: any) {
 	);
 
 	return (
-		<Card className="flex flex-col">
-			<CardHeader className="items-center pb-0">
-				<h1 className="flex flex-col items-center font-semibold">
+		<Card className="flex flex-col rounded-lg">
+			<div className="rounded-t-lg bg-slate-100 px-5 py-4">
+				<h1 className="flex flex-col items-center font-semibold text-sm">
 					Total de Iniciativas
 				</h1>
-			</CardHeader>
+			</div>
 			<CardContent className="flex-1 pb-0">
 				<ChartContainer
 					config={chartConfig}

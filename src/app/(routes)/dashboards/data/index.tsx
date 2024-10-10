@@ -146,3 +146,30 @@ export const priorities = [
 	// 	color: '#0748FE',
 	// },
 ];
+
+export const produtos = [
+	{
+		label: 'Eccox APT',
+		value: 'Eccox APT',
+	},
+	{
+		label: 'BMC AMI OPS - Monitors',
+		value: 'BMC AMI OPS - Monitors',
+	},
+	{
+		label: 'IVP',
+		value: 'IVP',
+	},
+	{
+		label: 'Eccox QC',
+		value: 'Eccox QC',
+	},
+	{
+		label: 'SHP',
+		value: 'SHP',
+	},
+	{
+		label: 'EBK',
+		value: 'EBK',
+	},
+];

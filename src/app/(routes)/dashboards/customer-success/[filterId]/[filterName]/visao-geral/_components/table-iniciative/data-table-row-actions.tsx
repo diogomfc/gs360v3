@@ -9,15 +9,9 @@ import { useJiraComments } from '@/http/jira/get-jira-comments-issue-id';
 import type { JiraIssue } from '@/http/jira/get-jira-filter-id';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import type { Row } from '@tanstack/react-table';
-import {
-	FileBox,
-	FileChartLine,
-	FileCheck2,
-	FileDiff,
-	FileText,
-} from 'lucide-react';
+import { FileText } from 'lucide-react';
 import { useState } from 'react';
-import { DashboardModal } from '../../_components/modal-row-actions/dashboard-modal';
+import { DashboardModal } from '../../../_components/modal-row-actions/dashboard-modal';
 
 interface DataTableRowActionsProps<TData> {
 	row: Row<TData>;
