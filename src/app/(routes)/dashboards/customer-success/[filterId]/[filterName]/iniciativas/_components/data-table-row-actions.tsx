@@ -5,7 +5,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useJiraComments } from '@/http/jira/get-jira-comments-issue-id';
+
 import type { JiraIssue } from '@/http/jira/get-jira-filter-id';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import type { Row } from '@tanstack/react-table';
@@ -27,23 +27,7 @@ export function DataTableRowActions<TData>({
 	const [modalTitle, setModalTitle] = useState('');
 	const [modalDescription, setModalDescription] = useState('');
 
-	// Buscando os comentários da issue utilizando o hook useJiraComments
-	const { data, isLoading, error } = useJiraComments(jiraIssue.key); // Buscando os comentários pelo id da issue
 
-	// Extraindo os comentários (se disponíveis)
-	const comments = data?.comments.map(
-		(comment: {
-			author: { displayName: string };
-			body: { content: { content: { text: string }[] }[] };
-		}) => ({
-			author: comment.author.displayName,
-			body: comment.body.content
-				.map((block: { content: { text: string }[] }) =>
-					block.content.map((item: { text: string }) => item.text).join(''),
-				)
-				.join(''),
-		}),
-	);
 
 	const openModal = (title: string, description: string) => {
 		setModalTitle(title);

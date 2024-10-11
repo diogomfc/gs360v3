@@ -9,7 +9,7 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
-import { Columns3 } from 'lucide-react';
+import { BetweenVerticalStart } from 'lucide-react';
 
 interface DataTableViewOptionsProps<TData> {
 	table: Table<TData>;
@@ -26,14 +26,13 @@ export function DataTableViewOptions<TData>({
 					size="sm"
 					className="ml-auto hidden h-8 lg:flex"
 				>
-					<Columns3 className="mr-2 h-4 w-4 text-muted-foreground" />
-
-					<span className="text-muted-foreground">Visual</span>
+					<BetweenVerticalStart className="mr-2 h-4 w-4 text-muted-foreground" />
+					<span className="text-muted-foreground">Colunas</span>
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end" className="w-[150px]">
 				<DropdownMenuLabel className="text-xs font-medium">
-					Alternar colunas
+					Adicionar colunas
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				{/* Itera pelas colunas, exceto "cliente" e "summary" que são sempre visíveis */}
@@ -46,6 +45,8 @@ export function DataTableViewOptions<TData>({
 							!['cliente', 'summary'].includes(column.id), // Evita ocultar essas colunas
 					)
 					.map((column) => {
+						const columnLabel = column.id === 'priority' ? 'Prioridade' : column.id;
+
 						return (
 							<DropdownMenuCheckboxItem
 								key={column.id}
@@ -53,7 +54,7 @@ export function DataTableViewOptions<TData>({
 								checked={column.getIsVisible()}
 								onCheckedChange={(value) => column.toggleVisibility(!!value)}
 							>
-								{column.id}
+								{columnLabel}
 							</DropdownMenuCheckboxItem>
 						);
 					})}

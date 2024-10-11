@@ -78,7 +78,11 @@ export const columns: ColumnDef<JiraIssue>[] = [
 	{
 		accessorKey: 'cliente',
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title="Cliente" />
+			<DataTableColumnHeader 
+			column={column} 
+			title="Cliente" 
+			className='text-xs ml-2'
+			/>
 		),
 		cell: ({ row }) => {
 			const AvatarCliente = logosCliente.find(
@@ -111,12 +115,17 @@ export const columns: ColumnDef<JiraIssue>[] = [
 				</div>
 			);
 		},
+		enableSorting: false,
 	},
 	// coluna 'summary - produto' do jira
 	{
 		accessorKey: 'summary',
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title="Iniciativa" />
+			<DataTableColumnHeader 
+			column={column} 
+			title="Iniciativa" 
+			className='text-xs'
+			/>
 		),
 		cell: ({ row }) => {
 			const produto = row.original.produto;
@@ -141,13 +150,18 @@ export const columns: ColumnDef<JiraIssue>[] = [
 				</div>
 			);
 		},
+		enableSorting: false,
 	},
 
 	//coluna 'reporter' do jira - Responsável
 	{
 		accessorKey: 'responsável',
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title="Responsável" />
+			<DataTableColumnHeader 
+			column={column} 
+			title="Responsável" 
+			className='text-xs'
+			/>
 		),
 		cell: ({ row }) => {
 			const reporter = row.original.reporter.displayName;
@@ -176,13 +190,18 @@ export const columns: ColumnDef<JiraIssue>[] = [
 				</div>
 			);
 		},
+		enableSorting: false,
 	},
 
 	// coluna 'status' do jira
 	{
 		accessorKey: 'status',
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title="Status" />
+			<DataTableColumnHeader 
+			column={column} 
+			title="Status" 
+			className='text-xs '
+			/>
 		),
 		cell: ({ row }) => {
 			// Encontrar o status unificado
@@ -219,7 +238,6 @@ export const columns: ColumnDef<JiraIssue>[] = [
 				</div>
 			);
 		},
-
 		filterFn: (row, id, value) => {
 			// Aplicar a unificação dos status ao valor da célula
 			const unifiedStatusValue = mapStatus(row.getValue(id));
@@ -228,13 +246,18 @@ export const columns: ColumnDef<JiraIssue>[] = [
 				(filterValue: string) => mapStatus(filterValue) === unifiedStatusValue,
 			);
 		},
+		enableSorting: false,
 	},
 
 	// coluna 'priority' do jira
 	{
 		accessorKey: 'priority',
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title="Prioridade" />
+			<DataTableColumnHeader 
+			column={column} 
+			title="Prioridade" 
+			className='text-xs flex items-center justify-center'
+			/>
 		),
 		cell: ({ row }) => {
 			// Utiliza o hook usePriority para calcular a prioridade
@@ -274,13 +297,18 @@ export const columns: ColumnDef<JiraIssue>[] = [
 		filterFn: (row, id, value) => {
 			return value.includes(row.getValue(id));
 		},
+		enableSorting: false,
 	},
 
 	// coluna 'dataLimite' do jira
 	{
 		accessorKey: 'data limite',
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title="Data Limite" />
+			<DataTableColumnHeader 
+			column={column} 
+			title="Data Limite" 
+			className='text-xs min-w-[120px] flex items-center justify-center'
+			/>
 		),
 		cell: ({ row }) => {
 			// Utiliza o hook useDataLimite para calcular a data limite
@@ -310,6 +338,7 @@ export const columns: ColumnDef<JiraIssue>[] = [
 				</div>
 			);
 		},
+		enableSorting: false,
 	},
 
 	{

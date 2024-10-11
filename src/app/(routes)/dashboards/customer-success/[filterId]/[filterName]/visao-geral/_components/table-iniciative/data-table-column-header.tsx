@@ -52,11 +52,15 @@ export function DataTableColumnHeader<TData, TValue>({
 				<DropdownMenuContent align="start">
 					<DropdownMenuItem onClick={() => column.toggleSorting(false)}>
 						<ArrowUpIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70 text-xs" />
-						<span className="text-xs">Asc</span>
+						<span className="text-xs"> 
+							  ordenar do mais antigo
+							 </span>
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => column.toggleSorting(true)}>
 						<ArrowDownIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70 text-xs" />
-						<span className="text-xs">Desc</span>
+						<span className="text-xs">
+							ordenar do mais recente
+						</span>
 					</DropdownMenuItem>
 					{/* <DropdownMenuSeparator />
 					<DropdownMenuItem onClick={() => column.toggleVisibility(false)}>

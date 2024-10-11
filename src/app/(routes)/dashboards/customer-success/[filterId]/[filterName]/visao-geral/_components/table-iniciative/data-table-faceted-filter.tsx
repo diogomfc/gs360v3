@@ -160,9 +160,9 @@ export function DataTableFacetedFilter<TData, TValue>({
 								<CommandGroup>
 									<CommandItem
 										onSelect={() => column?.setFilterValue(undefined)}
-										className="justify-center text-center"
+										className="justify-center text-center text-xs text-red-500"
 									>
-										Clear filters
+										Limpar filtros
 									</CommandItem>
 								</CommandGroup>
 							</>

@@ -201,18 +201,28 @@ export function DashboardModal({
 		useDataLimite({
 			dataLimite: dataLimite,
 		});
+   
+	// Formata a data para 'dd MMM' (dia e mês)
+		const FormattedDate = ({
+			startDate,
+		}: { startDate: Date | null | undefined }) => {
+			// Verifica se a data é inválida
+			if (!startDate || Number.isNaN(startDate.getTime())) {
+				return '-- --'; // Retorna '-- --' se não houver data válida
+			}
+		
+			// Cria uma nova data ajustando a hora para 00:00:00 sem ajustes de fuso horário
+			const localDate = new Date(startDate.toLocaleString("en-US", { timeZone: "UTC" }));
+		
+			// Zera a hora para garantir que seja interpretada como 00:00:00 no UTC
+			localDate.setHours(0, 0, 0, 0); 
+		
+			// Formata a data para 'dd MMM' (dia e mês)
+			const formattedDate = format(localDate, 'dd MMM', { locale: ptBR });
+		
+			return formattedDate;
+		};
 
-	const FormattedDate = ({
-		startDate,
-	}: { startDate: Date | null | undefined }) => {
-		// Verifica se a data é inválida
-		if (!startDate || Number.isNaN(startDate.getTime())) {
-			return '-- --'; // Retorna '-- --' se não houver data válida
-		}
-
-		const formattedDate = format(startDate, 'dd MMM', { locale: ptBR });
-		return formattedDate;
-	};
 
 	return (
 		<Dialog open={isOpen} onOpenChange={onClose}>

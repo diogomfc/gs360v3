@@ -280,7 +280,10 @@ export const columns: ColumnDef<JiraIssue>[] = [
 	{
 		accessorKey: 'data limite',
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title="Data Limite" />
+			<DataTableColumnHeader 
+			column={column} 
+			title="Data Limite" 
+			/>
 		),
 		cell: ({ row }) => {
 			// Utiliza o hook useDataLimite para calcular a data limite
@@ -310,6 +313,7 @@ export const columns: ColumnDef<JiraIssue>[] = [
 				</div>
 			);
 		},
+		
 	},
 
 	{

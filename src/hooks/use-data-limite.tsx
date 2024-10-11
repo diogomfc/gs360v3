@@ -17,7 +17,7 @@ export const useDataLimite = ({ dataLimite }: UseDataLimiteProps) => {
 		const currentDate = new Date();
 
 		// Converte a data para um formato legível
-		const endDateISO = new Date(dataLimite);
+		const endDateISO = new Date(dataLimite + 'T00:00:00');
 		const formattedEndDate = Number.isNaN(endDateISO.getTime())
 			? '-- --'
 			: format(endDateISO, 'dd MMM', { locale: ptBR });
