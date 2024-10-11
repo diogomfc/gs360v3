@@ -221,7 +221,7 @@ export function DashboardModal({
 					{/* Resizable Panel Group for "Escopo e Status Geral" and "Macro do Plano" */}
 
 					{/* Escopo E Status Geral */}
-					<Card className="col-span-2 rounded-2xl h-full">
+					<Card className="col-span-2 rounded-xl h-full">
 						<CardHeader className="pb-4">
 							<div className="text-sm font-bold flex justify-between items-center">
 								{/* Status, prioridade, risco, impacto e responsável */}
@@ -425,7 +425,7 @@ export function DashboardModal({
 								defaultSize={50}
 								className="mb-4 bg-gradient-to-b from-[#f7f8fa] to-white"
 							>
-								<div className="rounded-b-none border-b-0 rounded-t-2xl border-t h-auto ">
+								<div className="rounded-b-none border-b-0 rounded-t-lg border-t h-auto ">
 									<CardHeader className="pb-4">
 										<CardTitle className="text-sm font-bold flex justify-between items-center">
 											<div className="flex gap-1 items-center">
@@ -450,7 +450,7 @@ export function DashboardModal({
 
 					{/* Card Evolução */}
 
-					<Card className="col-span-1 row-span-2 mb-4 rounded-2xl">
+					<Card className="col-span-1 row-span-2 mb-4 rounded-xl">
 						<header className="flex items-center my-4 mx-2">
 							<div className="flex items-center justify-center mb-4">
 								<div className="w-24 h-24">
@@ -526,7 +526,7 @@ export function DashboardModal({
 						</header>
 						<ResizablePanelGroup
 							direction="vertical"
-							className="rounded-2xl border max-h-[395px]  bg-gradient-to-b from-[#eefffa] to-white"
+							className="rounded-lg border max-h-[395px]  bg-gradient-to-b from-[#eefffa] to-white"
 						>
 							<ResizablePanel defaultSize={50} className="">
 								<>
@@ -549,7 +549,7 @@ export function DashboardModal({
 								defaultSize={50}
 								className=" mb-4 bg-gradient-to-b from-[#eefaff] to-white"
 							>
-								<div className="rounded-b-none border-b-0 rounded-t-2xl border-t ">
+								<div className="rounded-b-none border-b-0 rounded-t-lg border-t ">
 									<CardHeader className="pb-4">
 										<CardTitle className="text-sm font-bold flex justify-between items-center">
 											Próximas atividades
