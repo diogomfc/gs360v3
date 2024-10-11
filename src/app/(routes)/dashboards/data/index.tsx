@@ -1,6 +1,6 @@
 import { StopwatchIcon } from '@radix-ui/react-icons';
 
-import { CircleHelp, Flame, OctagonPause, Rocket } from 'lucide-react';
+import { CircleHelp, Flame, OctagonPause, Rocket, TriangleAlert } from 'lucide-react';
 
 export const productLogos: { [key: string]: string } = {
 	'Eccox APT': '/assets/logo-produtos/APT.png',
@@ -130,7 +130,6 @@ export const priorities = [
 		label: 'Média',
 		value: 'P3 - Medium',
 		icon: Flame,
-		//color: '#FD9C08',
 		color: '#FF6347',
 	},
 	{
@@ -173,3 +172,26 @@ export const produtos = [
 		value: 'EBK',
 	},
 ];
+
+export const impactos = [
+	{
+		label: 'Alto',
+		value: 'Alto',
+		icon: TriangleAlert,
+		color: '#8B0000',
+	},
+	{
+		label: 'Médio',
+		value: 'Médio',
+		icon: TriangleAlert,
+		color: '#FF6347',
+	},
+	{
+		label: 'Baixo',
+		value: 'Baixo',
+		icon: TriangleAlert,
+		color: '#ff7700',
+	},
+];
+
+

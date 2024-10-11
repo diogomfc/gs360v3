@@ -1,4 +1,5 @@
 import {
+	impactos,
 	logosCliente,
 	priorities,
 	statuses,
@@ -42,9 +43,11 @@ import {
 	Siren,
 	TrendingUp,
 	TriangleAlert,
+	UserRound,
 } from 'lucide-react';
 import { AtividadesIssues } from './atividades-issue';
 import { RadialChartWithLogoCliente } from './radial-chart-with-logo-cliente';
+import { cn } from '@/lib/utils';
 
 interface DashboardModalProps {
 	isOpen: boolean;
@@ -217,11 +220,11 @@ export function DashboardModal({
 				<DialogHeader>
 					<DialogTitle className="text-base font-bold">{title}</DialogTitle>
 				</DialogHeader>
-				<div className="grid grid-cols-3 gap-4">
+				<div className="grid grid-cols-5 gap-4">
 					{/* Resizable Panel Group for "Escopo e Status Geral" and "Macro do Plano" */}
 
 					{/* Escopo E Status Geral */}
-					<Card className="col-span-2 rounded-xl h-full">
+					<Card className="col-span-3 rounded-md h-full">
 						<CardHeader className="pb-4">
 							<div className="text-sm font-bold flex justify-between items-center">
 								{/* Status, prioridade, risco, impacto e responsável */}
@@ -286,32 +289,42 @@ export function DashboardModal({
 											</div>
 										</div>
 									)}
-
 									{/* Impacto */}
-									{['alto', 'médio', 'baixo'].includes(impacto) && (
-										<div
-											title={`Impacto: ${impacto}`}
-											className={`border rounded-sm bg-${impacto === 'alto' ? 'red' : impacto === 'médio' ? 'yellow' : 'green'}-100 text-${impacto === 'alto' ? 'red' : impacto === 'médio' ? 'yellow' : 'green'}-800 cursor-help flex items-center justify-center`}
-										>
-											<div className="text-xs flex p-1 items-center justify-center gap-1">
-												<TriangleAlert className="h-4 w-4" />
-												<span className="mr-1 font-normal">{impacto}</span>
+									{impactos.map(({ label, color, icon: Icon }) => (
+										impacto.toLowerCase() === label.toLowerCase() && (
+											<div
+												key={label}
+												title={`Impacto: ${label}`}
+											className={cn(
+													'border rounded-sm cursor-help flex items-center justify-center'
+												)}
+												style={{
+													backgroundColor: `${color}33`, // Aplicando cor de fundo com opacidade
+													color: color // Aplicando cor do texto
+												}}
+											>
+												<div className="text-xs flex p-1 items-center justify-center gap-1">
+													<Icon className="h-4 w-4" />
+													<span className="mr-1 font-normal">{label}</span>
+												</div>
 											</div>
-										</div>
-									)}
+										)
+										))}
 								</div>
 
 								{/* Responsável */}
 								<div className="flex items-center">
 									<Avatar className="flex h-6 w-6 items-center justify-center space-y-0 border">
-										<AvatarImage
-											src={responsavel?.avatarUrls}
-											alt="Avatar"
-											className="h-6 w-6"
-										/>
-										<AvatarFallback className="text-xs font-normal text-muted-foreground">
-											{responsavel?.displayName?.charAt(0).toUpperCase()}
-										</AvatarFallback>
+									
+									<AvatarImage
+										src={responsavel?.avatarUrls || reporter?.avatarUrls}
+										alt="Avatar"
+										className="h-6 w-6"
+									/>
+									<AvatarFallback className="text-xs font-normal text-muted-foreground">
+										<UserRound className="h-4 w-4" />
+									</AvatarFallback>
+
 									</Avatar>
 									<div className="flex flex-col">
 										<span className="ml-2 text-[12px] text-xs ">
@@ -335,7 +348,7 @@ export function DashboardModal({
 						>
 							<ResizablePanel defaultSize={50}>
 								<CardContent>
-									<ScrollArea className="h-[480px]">
+								  <ScrollArea className="h-[390px]">
 										<div className="text-sm font-bold pb-3">
 											Escopo e status
 										</div>
@@ -425,7 +438,7 @@ export function DashboardModal({
 								defaultSize={50}
 								className="mb-4 bg-gradient-to-b from-[#f7f8fa] to-white"
 							>
-								<div className="rounded-b-none border-b-0 rounded-t-lg border-t h-auto ">
+								<div className="rounded-b-none border-b-0 rounded-t-md border-t h-auto ">
 									<CardHeader className="pb-4">
 										<CardTitle className="text-sm font-bold flex justify-between items-center">
 											<div className="flex gap-1 items-center">
@@ -450,7 +463,7 @@ export function DashboardModal({
 
 					{/* Card Evolução */}
 
-					<Card className="col-span-1 row-span-2 mb-4 rounded-xl">
+					<Card className="col-span-2 row-span-2 mb-4 rounded-md">
 						<header className="flex items-center my-4 mx-2">
 							<div className="flex items-center justify-center mb-4">
 								<div className="w-24 h-24">
@@ -526,7 +539,7 @@ export function DashboardModal({
 						</header>
 						<ResizablePanelGroup
 							direction="vertical"
-							className="rounded-lg border max-h-[395px]  bg-gradient-to-b from-[#eefffa] to-white"
+							className="rounded-md border max-h-[395px]  bg-gradient-to-b from-[#eefffa] to-white"
 						>
 							<ResizablePanel defaultSize={50} className="">
 								<>
@@ -536,7 +549,7 @@ export function DashboardModal({
 										</CardTitle>
 									</CardHeader>
 									<CardContent className="text-xs">
-										<ScrollArea className="h-[455px]">
+									<ScrollArea className="h-[350px]">
 											<FormattedTextWithCheck text={ultimasAtividades} />
 										</ScrollArea>
 									</CardContent>
@@ -549,14 +562,14 @@ export function DashboardModal({
 								defaultSize={50}
 								className=" mb-4 bg-gradient-to-b from-[#eefaff] to-white"
 							>
-								<div className="rounded-b-none border-b-0 rounded-t-lg border-t ">
+								<div className="rounded-b-none border-b-0 rounded-t-md border-t ">
 									<CardHeader className="pb-4">
 										<CardTitle className="text-sm font-bold flex justify-between items-center">
 											Próximas atividades
 										</CardTitle>
 									</CardHeader>
 									<CardContent className="text-xs">
-										<ScrollArea className="h-[455px]">
+									<ScrollArea className="h-[320px]">
 											<FormattedTextWithCalendar text={proximasAtividades} />
 										</ScrollArea>
 									</CardContent>

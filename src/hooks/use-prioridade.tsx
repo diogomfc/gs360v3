@@ -5,7 +5,7 @@ interface Priority {
 	value: string;
 	label: string;
 	color: string;
-	icon?: React.ElementType; // Se os ícones forem componentes React
+	icon?: React.ElementType; 
 }
 
 interface UsePriorityProps {
