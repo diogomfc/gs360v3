@@ -8,7 +8,6 @@ import Image from 'next/image';
 import { CardStatus } from './_components/card-status';
 import { OverviewYear } from './_components/overviwer/overview-year';
 import { ProgramList } from './_components/program-list';
-import { RecentInitiatives } from './_components/recent-iniciatives';
 import { TotalInitiatives } from './_components/total-initiatives';
 
 import { motion } from 'framer-motion';
