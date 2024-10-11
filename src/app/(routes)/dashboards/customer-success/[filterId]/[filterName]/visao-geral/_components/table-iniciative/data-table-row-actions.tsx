@@ -69,7 +69,7 @@ export function DataTableRowActions<TData>({
 					>
 						<div className="flex hover:text-[#0862B1]">
 							<FileText className="w-4 h-4 mr-2" />
-							<span className="text-xs">Detalhes geral</span>
+							<span className="text-xs">Detalhes gerais</span>
 						</div>
 					</DropdownMenuItem>
 

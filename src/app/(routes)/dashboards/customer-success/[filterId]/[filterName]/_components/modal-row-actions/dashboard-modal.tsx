@@ -223,8 +223,7 @@ export function DashboardModal({
 					{/* Escopo E Status Geral */}
 					<Card className="col-span-2 rounded-2xl h-full">
 						<CardHeader className="pb-4">
-							<CardTitle className="text-sm font-bold flex justify-between items-center">
-								<div>Escopo e status geral</div>
+							<div className="text-sm font-bold flex justify-between items-center">
 								{/* Status, prioridade, risco, impacto e responsável */}
 								<div className="flex gap-2">
 									{/* Status */}
@@ -327,7 +326,7 @@ export function DashboardModal({
 										</span>
 									</div>
 								</div>
-							</CardTitle>
+							</div>
 						</CardHeader>
 
 						<ResizablePanelGroup
@@ -337,6 +336,10 @@ export function DashboardModal({
 							<ResizablePanel defaultSize={50}>
 								<CardContent>
 									<ScrollArea className="h-[480px]">
+										<div className="text-sm font-bold pb-3">
+											Escopo e status
+										</div>
+
 										{/* alcance */}
 										<div className="border border-b-gray-100 p-2 mb-2 rounded-sm">
 											<div className="text-sm font-semibold flex items-center mb-2">

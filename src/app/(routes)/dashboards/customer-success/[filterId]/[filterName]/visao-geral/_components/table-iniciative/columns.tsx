@@ -105,7 +105,7 @@ export const columns: ColumnDef<JiraIssue>[] = [
 							</Avatar>
 						)}
 					</div>
-					<span className="ml-2 text-xs max-w-[150px] truncate ">
+					<span className="ml-2 text-xs font-medium  max-w-[150px] truncate ">
 						{row.getValue('cliente')}
 					</span>
 				</div>
@@ -137,7 +137,7 @@ export const columns: ColumnDef<JiraIssue>[] = [
 					) : (
 						<div className="text-muted-foreground text-[10px]">Sem Produto</div>
 					)}
-					<span className="font-medium text-xs">{iniciativa}</span>
+					<span className=" text-xs">{iniciativa}</span>
 				</div>
 			);
 		},
