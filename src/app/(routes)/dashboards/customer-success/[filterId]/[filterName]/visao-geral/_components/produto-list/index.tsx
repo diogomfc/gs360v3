@@ -3,13 +3,13 @@
 import { Card, CardContent } from '@/components/ui/card';
 
 import { productLogos } from '../../../../../../data';
-import { ProgramListItem } from './program-listItem';
+import { ProdutoListItem } from './produto-listItem';
 
-interface ProgramListProps {
-	produtoCounts: [string, number][];
+interface ProdutoListProps {
+	counts: [string, number][];
 }
 
-export function ProgramList({ produtoCounts }: ProgramListProps) {
+export function ProdutoList({ counts }: ProdutoListProps) {
 	return (
 		<Card className="h-[300px] flex flex-col rounded-lg">
 			<div className="rounded-t-lg bg-slate-100 px-5 py-4 text-sm">
@@ -21,14 +21,14 @@ export function ProgramList({ produtoCounts }: ProgramListProps) {
 			</div>
 			<CardContent className="mb-3 flex-grow overflow-y-auto pt-3">
 				<ul className="space-y-3">
-					{produtoCounts.map(([programName, count]) => {
+					{counts.map(([produtoName, count]) => {
 						const imageSrc =
-							productLogos[programName] || '/assets/logo-produtos/QMG.png';
+							productLogos[produtoName] || '/assets/logo-produtos/QMG.png';
 						return (
-							<ProgramListItem
-								key={programName}
+							<ProdutoListItem
+								key={produtoName}
 								imageSrc={imageSrc}
-								title={programName}
+								title={produtoName}
 								count={count}
 							/>
 						);

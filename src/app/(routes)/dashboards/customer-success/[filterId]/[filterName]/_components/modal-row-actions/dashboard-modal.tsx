@@ -3,30 +3,31 @@ import {
 	logosCliente,
 	priorities,
 	statuses,
-} from '@/app/(routes)/dashboards/data';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
+} from "@/app/(routes)/dashboards/data";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
 	Dialog,
 	DialogContent,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from '@/components/ui/dialog';
+} from "@/components/ui/dialog";
 
 import {
 	ResizableHandle,
 	ResizablePanel,
 	ResizablePanelGroup,
-} from '@/components/ui/resizable';
-import { ScrollArea } from '@/components/ui/scroll-area';
+} from "@/components/ui/resizable";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
-import { useDataLimite } from '@/hooks/use-data-limite';
-import { usePriority } from '@/hooks/use-prioridade';
-import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
+import { useDataLimite } from "@/hooks/use-data-limite";
+import { usePriority } from "@/hooks/use-prioridade";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 import {
 	ActivityIcon,
 	Calendar,
@@ -44,10 +45,9 @@ import {
 	TrendingUp,
 	TriangleAlert,
 	UserRound,
-} from 'lucide-react';
-import { AtividadesIssues } from './atividades-issue';
-import { RadialChartWithLogoCliente } from './radial-chart-with-logo-cliente';
-import { cn } from '@/lib/utils';
+} from "lucide-react";
+import { AtividadesIssues } from "./atividades-issue";
+import { CircularProgressBar } from "./circular-progress-bar";
 
 interface DashboardModalProps {
 	isOpen: boolean;
@@ -91,7 +91,7 @@ function getLogoByCliente(cliente: string) {
 	const logoData = logosCliente.find(
 		(logoItem) => logoItem.cliente.trim().toLowerCase() === normalizedCliente,
 	);
-	return logoData ? logoData.logo : ''; // Retorna o logo se encontrado
+	return logoData ? logoData.logo : ""; // Retorna o logo se encontrado
 }
 
 // Função para obter os detalhes do status a partir do arquivo centralizado
@@ -106,7 +106,7 @@ function getStatusDetails(status: string) {
 	// Retorna um ícone padrão caso o status não seja encontrado
 	return {
 		icon: <FileClock size={16} color="#9E9E9E" />,
-		color: '#9E9E9E',
+		color: "#9E9E9E",
 	};
 }
 
@@ -114,7 +114,7 @@ function getStatusDetails(status: string) {
 const FormattedText = ({ text }: { text: string }) => {
 	return (
 		<div>
-			{text.split('\n').map((item) => {
+			{text.split("\n").map((item) => {
 				return <p key={item}>{item}</p>;
 			})}
 		</div>
@@ -125,7 +125,7 @@ const FormattedText = ({ text }: { text: string }) => {
 const FormattedTextWithCalendar = ({ text }: { text: string }) => {
 	return (
 		<div className="flex flex-col gap-2">
-			{text.split('\n').map((item) => {
+			{text.split("\n").map((item) => {
 				return (
 					<p key={item} className="flex items-start">
 						<CalendarDays className="w-4 h-4 mr-1" style={{ flexShrink: 0 }} />
@@ -140,7 +140,7 @@ const FormattedTextWithCalendar = ({ text }: { text: string }) => {
 const FormattedTextWithCheck = ({ text }: { text: string }) => {
 	return (
 		<div className="flex flex-col gap-2">
-			{text.split('\n').map((item) => {
+			{text.split("\n").map((item) => {
 				return (
 					<p key={item} className="flex items-start">
 						<CircleCheckBig
@@ -183,7 +183,7 @@ export function DashboardModal({
 	const { icon: statusIcon, color: statusColor } = getStatusDetails(status); // Obtém os detalhes do status
 
 	function shortenProgramName(name: string) {
-		return name.replace(/ - Monitors$/, '').replace(/Eccox /, '');
+		return name.replace(/ - Monitors$/, "").replace(/Eccox /, "");
 	}
 
 	// Use o hook usePriority para obter os dados da prioridade
@@ -201,40 +201,42 @@ export function DashboardModal({
 		useDataLimite({
 			dataLimite: dataLimite,
 		});
-   
-	// Formata a data para 'dd MMM' (dia e mês)
-		const FormattedDate = ({
-			startDate,
-		}: { startDate: Date | null | undefined }) => {
-			// Verifica se a data é inválida
-			if (!startDate || Number.isNaN(startDate.getTime())) {
-				return '-- --'; // Retorna '-- --' se não houver data válida
-			}
-		
-			// Cria uma nova data ajustando a hora para 00:00:00 sem ajustes de fuso horário
-			const localDate = new Date(startDate.toLocaleString("en-US", { timeZone: "UTC" }));
-		
-			// Zera a hora para garantir que seja interpretada como 00:00:00 no UTC
-			localDate.setHours(0, 0, 0, 0); 
-		
-			// Formata a data para 'dd MMM' (dia e mês)
-			const formattedDate = format(localDate, 'dd MMM', { locale: ptBR });
-		
-			return formattedDate;
-		};
 
+	// Formata a data para 'dd MMM' (dia e mês)
+	const FormattedDate = ({
+		startDate,
+	}: { startDate: Date | null | undefined }) => {
+		// Verifica se a data é inválida
+		if (!startDate || Number.isNaN(startDate.getTime())) {
+			return "-- --"; // Retorna '-- --' se não houver data válida
+		}
+
+		// Cria uma nova data ajustando a hora para 00:00:00 sem ajustes de fuso horário
+		const localDate = new Date(
+			startDate.toLocaleString("en-US", { timeZone: "UTC" }),
+		);
+
+		// Zera a hora para garantir que seja interpretada como 00:00:00 no UTC
+		localDate.setHours(0, 0, 0, 0);
+
+		// Formata a data para 'dd MMM' (dia e mês)
+		const formattedDate = format(localDate, "dd MMM", { locale: ptBR });
+
+		return formattedDate;
+	};
 
 	return (
 		<Dialog open={isOpen} onOpenChange={onClose}>
-			<DialogContent className="max-w-7xl max-h-[625px]">
-				<DialogHeader>
+			<DialogContent className="w-[calc(100vw-80px)] h-[calc(100vh-80px)] max-w-[calc(100vw-80px)] max-h-[calc(100vh-80px)] flex flex-col">
+				{/* <div className="grid grid-cols-5 gap-4 w-full h-full"> */}
+				<DialogHeader className="flex-shrink-0">
 					<DialogTitle className="text-base font-bold">{title}</DialogTitle>
 				</DialogHeader>
-				<div className="grid grid-cols-5 gap-4">
-					{/* Resizable Panel Group for "Escopo e Status Geral" and "Macro do Plano" */}
+				<div className="grid grid-cols-5 gap-4 w-full h-full flex-grow">
+					{/* Dialog Header no topo */}
 
 					{/* Escopo E Status Geral */}
-					<Card className="col-span-3 rounded-md h-full">
+					<Card className="col-span-3 row-span-full rounded-md">
 						<CardHeader className="pb-4">
 							<div className="text-sm font-bold flex justify-between items-center">
 								{/* Status, prioridade, risco, impacto e responsável */}
@@ -288,7 +290,7 @@ export function DashboardModal({
 										</div>
 									</div>
 									{/* Risco */}
-									{risco === 'Sim' && (
+									{risco === "Sim" && (
 										<div
 											title={`Risco: ${risco}`}
 											className="border rounded-sm bg-red-100 text-red-800 cursor-help flex items-center justify-center"
@@ -300,41 +302,40 @@ export function DashboardModal({
 										</div>
 									)}
 									{/* Impacto */}
-									{impactos.map(({ label, color, icon: Icon }) => (
-										impacto.toLowerCase() === label.toLowerCase() && (
-											<div
-												key={label}
-												title={`Impacto: ${label}`}
-											className={cn(
-													'border rounded-sm cursor-help flex items-center justify-center'
-												)}
-												style={{
-													backgroundColor: `${color}33`, // Aplicando cor de fundo com opacidade
-													color: color // Aplicando cor do texto
-												}}
-											>
-												<div className="text-xs flex p-1 items-center justify-center gap-1">
-													<Icon className="h-4 w-4" />
-													<span className="mr-1 font-normal">{label}</span>
+									{impactos.map(
+										({ label, color, icon: Icon }) =>
+											impacto.toLowerCase() === label.toLowerCase() && (
+												<div
+													key={label}
+													title={`Impacto: ${label}`}
+													className={cn(
+														"border rounded-sm cursor-help flex items-center justify-center",
+													)}
+													style={{
+														backgroundColor: `${color}33`, // Aplicando cor de fundo com opacidade
+														color: color, // Aplicando cor do texto
+													}}
+												>
+													<div className="text-xs flex p-1 items-center justify-center gap-1">
+														<Icon className="h-4 w-4" />
+														<span className="mr-1 font-normal">{label}</span>
+													</div>
 												</div>
-											</div>
-										)
-										))}
+											),
+									)}
 								</div>
 
 								{/* Responsável */}
 								<div className="flex items-center">
 									<Avatar className="flex h-6 w-6 items-center justify-center space-y-0 border">
-									
-									<AvatarImage
-										src={responsavel?.avatarUrls || reporter?.avatarUrls}
-										alt="Avatar"
-										className="h-6 w-6"
-									/>
-									<AvatarFallback className="text-xs font-normal text-muted-foreground">
-										<UserRound className="h-4 w-4" />
-									</AvatarFallback>
-
+										<AvatarImage
+											src={responsavel?.avatarUrls || reporter?.avatarUrls}
+											alt="Avatar"
+											className="h-6 w-6"
+										/>
+										<AvatarFallback className="text-xs font-normal text-muted-foreground">
+											<UserRound className="h-4 w-4" />
+										</AvatarFallback>
 									</Avatar>
 									<div className="flex flex-col">
 										<span className="ml-2 text-[12px] text-xs ">
@@ -344,7 +345,7 @@ export function DashboardModal({
 										<span className="ml-2 text-[12px] text-xs font-normal text-muted-foreground">
 											{responsavel?.emailAddress ||
 												reporter?.emailAddress ||
-												'sem email'}
+												"sem email"}
 											{/* Exibe 'sem email' se não houver responsável */}
 										</span>
 									</div>
@@ -354,43 +355,43 @@ export function DashboardModal({
 
 						<ResizablePanelGroup
 							direction="vertical"
-							className="min-h-[465px] max-h-[455px]  p-0 m-0"
+							className="h-[400px] min-h-[400px] max-h-[650px] p-0 m-0 md:h-[650px] md:max-h-[650px] sm:h-[400px] sm:max-h-[400px]"
 						>
 							<ResizablePanel defaultSize={50}>
-								<CardContent>
-								  <ScrollArea className="h-[390px]">
+								<CardContent className="h-full">
+									<ScrollArea className="min-h-full sm:h-[370px]">
 										<div className="text-sm font-bold pb-3">
 											Escopo e status
 										</div>
 
-										{/* alcance */}
+										{/* Alcance */}
 										<div className="border border-b-gray-100 p-2 mb-2 rounded-sm">
 											<div className="text-sm font-semibold flex items-center mb-2">
 												<TrendingUp className="h-4 w-4 inline mr-2" />
 												Alcance
 											</div>
 
-											<p className="text-xs text-muted-foreground ">
+											<p className="text-xs text-muted-foreground">
 												{descricao ? (
 													<FormattedText text={descricao} />
 												) : (
-													'Não informado'
+													"Não informado"
 												)}
 											</p>
 										</div>
 
-										{/* Estado Inicial*/}
+										{/* Estado Inicial */}
 										<div className="border border-b-gray-100 p-2 mb-2 rounded-sm">
 											<div className="text-sm font-semibold flex items-center mb-2">
 												<GitCommitHorizontal className="h-4 w-4 inline mr-2" />
 												Estado inicial
 											</div>
 
-											<p className="text-xs text-muted-foreground ">
+											<p className="text-xs text-muted-foreground">
 												{estadoInicial ? (
 													<FormattedText text={estadoInicial} />
 												) : (
-													'Não informado'
+													"Não informado"
 												)}
 											</p>
 										</div>
@@ -402,11 +403,11 @@ export function DashboardModal({
 												Estado atual
 											</div>
 
-											<p className="text-xs text-muted-foreground ">
+											<p className="text-xs text-muted-foreground">
 												{estadoAtual ? (
 													<FormattedText text={estadoAtual} />
 												) : (
-													'Não informado'
+													"Não informado"
 												)}
 											</p>
 										</div>
@@ -418,11 +419,11 @@ export function DashboardModal({
 												(R) Risco / (I) Issue
 											</div>
 
-											<p className="text-xs text-muted-foreground ">
+											<p className="text-xs text-muted-foreground">
 												{riscoOuIssue ? (
 													<FormattedText text={riscoOuIssue} />
 												) : (
-													'Não informado'
+													"Não informado"
 												)}
 											</p>
 										</div>
@@ -434,8 +435,8 @@ export function DashboardModal({
 												Ação
 											</div>
 
-											<p className="text-xs text-muted-foreground ">
-												{acao ? <FormattedText text={acao} /> : 'Não informado'}
+											<p className="text-xs text-muted-foreground">
+												{acao ? <FormattedText text={acao} /> : "Não informado"}
 											</p>
 										</div>
 									</ScrollArea>
@@ -443,12 +444,13 @@ export function DashboardModal({
 							</ResizablePanel>
 
 							<ResizableHandle withHandle className="mt-4" />
+
 							{/* Macro do Plano */}
 							<ResizablePanel
 								defaultSize={50}
-								className="mb-4 bg-gradient-to-b from-[#f7f8fa] to-white"
+								className="mb-[80px] bg-gradient-to-b from-[#f7f8fa] to-white"
 							>
-								<div className="rounded-b-none border-b-0 rounded-t-md border-t h-auto ">
+								<div className="rounded-b-none border-b-0 rounded-t-md border-t h-auto">
 									<CardHeader className="pb-4">
 										<CardTitle className="text-sm font-bold flex justify-between items-center">
 											<div className="flex gap-1 items-center">
@@ -461,7 +463,7 @@ export function DashboardModal({
 									</CardHeader>
 
 									<CardContent>
-										<ScrollArea className="h-[350px]">
+										<ScrollArea className="min-h-full sm:h-[490px]">
 											{/* Jira comments atividades */}
 											<AtividadesIssues issueId={keyIssue} />
 										</ScrollArea>
@@ -473,13 +475,13 @@ export function DashboardModal({
 
 					{/* Card Evolução */}
 
-					<Card className="col-span-2 row-span-2 mb-4 rounded-md">
-						<header className="flex items-center my-4 mx-2">
+					<Card className="col-span-2 row-span-full rounded-md flex flex-col">
+						<header className="flex items-center mt-4 mx-2">
 							<div className="flex items-center justify-center mb-4">
 								<div className="w-24 h-24">
-									<RadialChartWithLogoCliente
+									<CircularProgressBar
 										logoUrl={logo}
-										evolucao={status === 'Concluído' ? 100 : 65}
+										evolucao={status === "Concluído" ? 100 : 65}
 										cliente={cliente}
 									/>
 								</div>
@@ -490,7 +492,6 @@ export function DashboardModal({
 									<div className="flex items-center space-x-4">
 										<div className="flex flex-col gap-1">
 											<div className="flex items-center gap-1">
-												{/* Produtos */}
 												{produto ? (
 													<Badge
 														variant="secondary"
@@ -512,12 +513,10 @@ export function DashboardModal({
 									</div>
 								</div>
 								<div className="flex items-center gap-2">
-									{/* startDate */}
 									<div className="flex items-center py-1 px-2 justify-center rounded-sm border">
 										<div className="flex items-center justify-center gap-1 rounded-t-sm">
 											<CalendarCheck size={14} />
-											<span className="text-xs font-semibold ">
-												{/* {startDate} */}
+											<span className="text-xs font-semibold">
 												<FormattedDate startDate={new Date(startDate)} />
 											</span>
 										</div>
@@ -525,7 +524,6 @@ export function DashboardModal({
 
 									<ChevronsRight size={9} />
 
-									{/* Data limite */}
 									<div
 										className={`flex items-center py-1 px-2 justify-center rounded-sm border ${bgColorClass}`}
 									>
@@ -547,45 +545,44 @@ export function DashboardModal({
 								</div>
 							</div>
 						</header>
-						<ResizablePanelGroup
-							direction="vertical"
-							className="rounded-md border max-h-[395px]  bg-gradient-to-b from-[#eefffa] to-white"
-						>
-							<ResizablePanel defaultSize={50} className="">
-								<>
-									<CardHeader className="pb-4">
-										<CardTitle className="text-sm font-bold flex justify-between items-center">
-											Ultimas atividades
-										</CardTitle>
-									</CardHeader>
-									<CardContent className="text-xs">
-									<ScrollArea className="h-[350px]">
-											<FormattedTextWithCheck text={ultimasAtividades} />
-										</ScrollArea>
-									</CardContent>
-								</>
-							</ResizablePanel>
 
-							<ResizableHandle withHandle className="mt-4 " />
+						{/* Para garantir que o conteúdo abaixo ocupe todo o espaço restante */}
 
-							<ResizablePanel
-								defaultSize={50}
-								className=" mb-4 bg-gradient-to-b from-[#eefaff] to-white"
-							>
-								<div className="rounded-b-none border-b-0 rounded-t-md border-t ">
-									<CardHeader className="pb-4">
-										<CardTitle className="text-sm font-bold flex justify-between items-center">
-											Próximas atividades
-										</CardTitle>
-									</CardHeader>
-									<CardContent className="text-xs">
-									<ScrollArea className="h-[320px]">
-											<FormattedTextWithCalendar text={proximasAtividades} />
-										</ScrollArea>
-									</CardContent>
-								</div>
-							</ResizablePanel>
-						</ResizablePanelGroup>
+						<div className="flex-1 flex flex-col">
+							<ResizablePanelGroup direction="vertical" className="">
+								<ResizablePanel defaultSize={50} className="">
+									<div className="rounded-md border-t bg-gradient-to-b max-h-full  from-[#eefffa] to-white h-full">
+										<CardHeader className="pb-4">
+											<CardTitle className="text-sm font-bold flex justify-between items-center">
+												Ultimas atividades
+											</CardTitle>
+										</CardHeader>
+										<CardContent className="text-xs h-full">
+											<ScrollArea className="min-h-full sm:h-[350px]">
+												<FormattedTextWithCheck text={ultimasAtividades} />
+											</ScrollArea>
+										</CardContent>
+									</div>
+								</ResizablePanel>
+
+								<ResizableHandle withHandle className="mt-4" />
+
+								<ResizablePanel defaultSize={50} className="">
+									<div className="rounded-b-none border-b-0 rounded-t-md border-t bg-gradient-to-b from-[#eefaff] to-white h-full">
+										<CardHeader className="pb-4">
+											<CardTitle className="text-sm font-bold flex justify-between items-center">
+												Próximas atividades
+											</CardTitle>
+										</CardHeader>
+										<CardContent className="text-xs h-full">
+											<ScrollArea className="min-h-full sm:h-[350px]">
+												<FormattedTextWithCalendar text={proximasAtividades} />
+											</ScrollArea>
+										</CardContent>
+									</div>
+								</ResizablePanel>
+							</ResizablePanelGroup>
+						</div>
 					</Card>
 				</div>
 			</DialogContent>

@@ -1,142 +1,152 @@
-import { StopwatchIcon } from '@radix-ui/react-icons';
+import { StopwatchIcon } from "@radix-ui/react-icons";
 
-import { CircleHelp, Flame, OctagonPause, Rocket, TriangleAlert } from 'lucide-react';
+import {
+	CircleHelp,
+	Flame,
+	OctagonPause,
+	Rocket,
+	TriangleAlert,
+} from "lucide-react";
 
 export const productLogos: { [key: string]: string } = {
-	'Eccox APT': '/assets/logo-produtos/APT.png',
-	'BMC AMI OPS - Monitors': '/assets/logo-produtos/QMG.png',
-	IVP: '/assets/logo-produtos/QMG.png',
-	'Eccox QC': '/assets/logo-produtos/QC.png',
-	SHP: '/assets/logo-produtos/ABM.png',
-	EBK: '/assets/logo-produtos/QMG.png',
+	"Eccox APT": "/assets/logo-produtos/APT.png",
+	"BMC AMI OPS - Monitors": "/assets/logo-produtos/QMG.png",
+	IVP: "/assets/logo-produtos/QMG.png",
+	"Eccox QC": "/assets/logo-produtos/QC.png",
+	SHP: "/assets/logo-produtos/ABM.png",
+	EBK: "/assets/logo-produtos/QMG.png",
 };
 
 export const logosCliente = [
 	{
-		cliente: 'Eccox ',
-		logo: '/assets/customer-success/logo_eccox.png',
+		cliente: "Eccox ",
+		logo: "/assets/customer-success/logo_eccox.png",
 	},
 	{
-		cliente: 'Eccox',
-		logo: '/assets/customer-success/logo_eccox.png',
+		cliente: "Eccox",
+		logo: "/assets/customer-success/logo_eccox.png",
 	},
 	{
-		cliente: 'Bradesco Seguros',
-		logo: '/assets/customer-success/logo-bradesco-seguro.svg',
+		cliente: "Bradesco Seguros",
+		logo: "/assets/customer-success/logo-bradesco-seguro.svg",
 	},
 	{
-		cliente: 'Banco Bradesco',
-		logo: '/assets/customer-success/logo-bradesco.svg',
+		cliente: "Banco Bradesco",
+		logo: "/assets/customer-success/logo-bradesco.svg",
 	},
 	{
-		cliente: 'Caixa Econômica Federal',
-		logo: '/assets/customer-success/logo-caixa.svg',
+		cliente: "Caixa Econômica Federal",
+		logo: "/assets/customer-success/logo-caixa.svg",
 	},
 	{
-		cliente: 'Cielo',
-		logo: '/assets/customer-success/logo-cielo.svg',
+		cliente: "Cielo",
+		logo: "/assets/customer-success/logo-cielo.svg",
 	},
 	{
-		cliente: 'Banco Itaú',
-		logo: '/assets/customer-success/logo-itau.svg',
+		cliente: "Banco Itaú",
+		logo: "/assets/customer-success/logo-itau.svg",
 	},
 	{
-		cliente: 'Banco Mercantil',
-		logo: '/assets/customer-success/logo-mercantil.svg',
+		cliente: "Banco Mercantil",
+		logo: "/assets/customer-success/logo-mercantil.svg",
 	},
 	{
-		cliente: 'ProdeMGe',
-		logo: '/assets/customer-success/logo_prodemge.png',
+		cliente: "ProdeMGe",
+		logo: "/assets/customer-success/logo_prodemge.png",
+	},
+	{
+		cliente: "Santander",
+		logo: "/assets/customer-success/logo-santander.svg",
 	},
 ];
 
 export const statuses = [
 	{
-		value: 'Backlog',
-		label: 'Backlog',
+		value: "Backlog",
+		label: "Backlog",
 		icon: CircleHelp,
-		color: '#327dd2',
+		color: "#327dd2",
 	},
 	{
-		value: 'Impedimento',
-		label: 'Impedimento',
+		value: "Impedimento",
+		label: "Impedimento",
 		icon: OctagonPause,
-		color: '#a6b5c7',
+		color: "#a6b5c7",
 	},
 	{
-		value: 'Em andamento',
-		label: 'Em andamento',
+		value: "Em andamento",
+		label: "Em andamento",
 		icon: StopwatchIcon,
-		color: '#E8C468',
+		color: "#E8C468",
 	},
 	{
-		value: 'Concluído',
-		label: 'Concluído',
+		value: "Concluído",
+		label: "Concluído",
 		icon: Rocket,
-		color: '#2A9D90',
+		color: "#2A9D90",
 	},
 	{
-		value: 'Impedimento Onboarding',
-		label: 'Impedimento Onboarding',
+		value: "Impedimento Onboarding",
+		label: "Impedimento Onboarding",
 		icon: OctagonPause,
-		color: '#a6b5c7',
+		color: "#a6b5c7",
 	},
 	{
-		value: 'Impedimento Ongoing',
-		label: 'Impedimento Ongoing',
+		value: "Impedimento Ongoing",
+		label: "Impedimento Ongoing",
 		icon: OctagonPause,
-		color: '#a6b5c7',
+		color: "#a6b5c7",
 	},
 	{
-		value: 'Impedimento Suporte',
-		label: 'Impedimento Suporte',
+		value: "Impedimento Suporte",
+		label: "Impedimento Suporte",
 		icon: OctagonPause,
-		color: '#a6b5c7',
+		color: "#a6b5c7",
 	},
 	{
-		value: 'Tarefas Onboarding',
-		label: 'Tarefas Onboarding',
+		value: "Tarefas Onboarding",
+		label: "Tarefas Onboarding",
 		icon: CircleHelp,
-		color: '#327dd2',
+		color: "#327dd2",
 	},
 	{
-		value: 'Tarefas Ongoing',
-		label: 'Tarefas Ongoing',
+		value: "Tarefas Ongoing",
+		label: "Tarefas Ongoing",
 		icon: CircleHelp,
-		color: '#327dd2',
+		color: "#327dd2",
 	},
 	{
-		value: 'Tarefas Suporte',
-		label: 'Tarefas Suporte',
+		value: "Tarefas Suporte",
+		label: "Tarefas Suporte",
 		icon: CircleHelp,
-		color: '#327dd2',
+		color: "#327dd2",
 	},
 ];
 
 export const priorities = [
 	{
-		label: 'Crítica',
-		value: 'P1 - Critical',
+		label: "Crítica",
+		value: "P1 - Critical",
 		icon: Flame,
-		color: '#8B0000',
+		color: "#8B0000",
 	},
 	{
-		label: 'Alta',
-		value: 'P2 - High',
+		label: "Alta",
+		value: "P2 - High",
 		icon: Flame,
-		color: '#FF0000',
+		color: "#FF0000",
 	},
 	{
-		label: 'Média',
-		value: 'P3 - Medium',
+		label: "Média",
+		value: "P3 - Medium",
 		icon: Flame,
-		color: '#FF6347',
+		color: "#FF6347",
 	},
 	{
-		label: 'Baixa',
-		value: 'P4 - Low',
+		label: "Baixa",
+		value: "P4 - Low",
 		icon: Flame,
-		color: '#ff7700',
+		color: "#ff7700",
 	},
 	// {
 	// 	label: 'Very Low',
@@ -148,50 +158,48 @@ export const priorities = [
 
 export const produtos = [
 	{
-		label: 'Eccox APT',
-		value: 'Eccox APT',
+		label: "Eccox APT",
+		value: "Eccox APT",
 	},
 	{
-		label: 'BMC AMI OPS - Monitors',
-		value: 'BMC AMI OPS - Monitors',
+		label: "BMC AMI OPS - Monitors",
+		value: "BMC AMI OPS - Monitors",
 	},
 	{
-		label: 'IVP',
-		value: 'IVP',
+		label: "IVP",
+		value: "IVP",
 	},
 	{
-		label: 'Eccox QC',
-		value: 'Eccox QC',
+		label: "Eccox QC",
+		value: "Eccox QC",
 	},
 	{
-		label: 'SHP',
-		value: 'SHP',
+		label: "SHP",
+		value: "SHP",
 	},
 	{
-		label: 'EBK',
-		value: 'EBK',
+		label: "EBK",
+		value: "EBK",
 	},
 ];
 
 export const impactos = [
 	{
-		label: 'Alto',
-		value: 'Alto',
+		label: "Alto",
+		value: "Alto",
 		icon: TriangleAlert,
-		color: '#8B0000',
+		color: "#8B0000",
 	},
 	{
-		label: 'Médio',
-		value: 'Médio',
+		label: "Médio",
+		value: "Médio",
 		icon: TriangleAlert,
-		color: '#FF6347',
+		color: "#FF6347",
 	},
 	{
-		label: 'Baixo',
-		value: 'Baixo',
+		label: "Baixo",
+		value: "Baixo",
 		icon: TriangleAlert,
-		color: '#ff7700',
+		color: "#ff7700",
 	},
 ];
-
-

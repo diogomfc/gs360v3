@@ -1,31 +1,31 @@
-'use client';
+"use client";
 
-import { type ChartConfig, ChartContainer } from '@/components/ui/chart';
+import { type ChartConfig, ChartContainer } from "@/components/ui/chart";
 import {
 	Label,
 	PolarGrid,
 	PolarRadiusAxis,
 	RadialBar,
 	RadialBarChart,
-} from 'recharts';
+} from "recharts";
 
-interface GraficoTesteClienteProps {
+interface CircularProgressBarProps {
 	logoUrl?: string; // URL da imagem do logo (opcional)
 	evolucao: number; // Valor para o gráfico
 	cliente?: string; // Nome do cliente (opcional)
 }
 
-export function RadialChartWithLogoCliente({
+export function CircularProgressBar({
 	logoUrl,
 	evolucao,
-}: GraficoTesteClienteProps) {
+}: CircularProgressBarProps) {
 	// Dados do gráfico, usando o valor passado por prop para 'evolucao'
-	const chartData = [{ evolucao, fill: '#38b367' }];
+	const chartData = [{ evolucao, fill: "#38b367" }];
 
 	// Configuração do gráfico
 	const chartConfig = {
 		evolucao: {
-			label: 'Evolução',
+			label: "Evolução",
 		},
 	} satisfies ChartConfig;
 
@@ -58,7 +58,7 @@ export function RadialChartWithLogoCliente({
 				<PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
 					<Label
 						content={({ viewBox }) => {
-							if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
+							if (viewBox && "cx" in viewBox && "cy" in viewBox) {
 								return (
 									<g>
 										{logoUrl && (

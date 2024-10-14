@@ -7,7 +7,7 @@ import { CircleHelp, OctagonPause, Rocket } from 'lucide-react';
 import Image from 'next/image';
 import { CardStatus } from './_components/card-status';
 import { OverviewYear } from './_components/overviwer/overview-year';
-import { ProgramList } from './_components/program-list';
+import { ProdutoList } from './_components/produto-list';
 import { TotalInitiatives } from './_components/total-initiatives';
 
 import { motion } from 'framer-motion';
@@ -94,7 +94,7 @@ export default function JiraFilterDetails({ params }: JiraFilterDetailsProps) {
 						<TotalInitiatives jiraData={jiraData} />
 
 						{/* Card total de programas em lista com ícone */}
-						<ProgramList produtoCounts={produtoCounts} />
+						<ProdutoList counts={produtoCounts} />
 
 						{/* Grupo 1: Cards de Desenvolvimento e Validação */}
 						<div className="grid w-full grid-rows-2 gap-4">

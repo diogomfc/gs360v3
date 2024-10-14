@@ -3,22 +3,22 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { motion } from 'framer-motion';
 
-interface ProgramListItemProps {
+interface ProdutoListItemProps {
 	imageSrc: string;
 	title: string;
 	count: number;
 }
 
-// Função para encurtar o nome do programa
-function shortenProgramName(name: string) {
+// Função para encurtar o nome do Produtoa
+function shortenProdutoName(name: string) {
 	return name.replace(/ - Monitors$/, '').replace(/Eccox /, '');
 }
 
-export function ProgramListItem({
+export function ProdutoListItem({
 	imageSrc,
 	title,
 	count,
-}: ProgramListItemProps) {
+}: ProdutoListItemProps) {
 	return (
 		<motion.li
 			initial={{ opacity: 0, x: -20 }}
@@ -39,7 +39,7 @@ export function ProgramListItem({
 					</Avatar>
 				</div>
 				<span className="text-xs font-medium text-muted-foreground">
-					{shortenProgramName(title)}
+					{shortenProdutoName(title)}
 				</span>
 			</div>
 			<div className="mx-8 flex-grow border-b border-dotted border-muted-foreground/20" />

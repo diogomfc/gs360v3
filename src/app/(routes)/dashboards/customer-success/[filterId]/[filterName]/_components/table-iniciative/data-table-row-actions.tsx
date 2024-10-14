@@ -1,17 +1,18 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from "@/components/ui/dropdown-menu";
 
-import type { JiraIssue } from '@/http/jira/get-jira-filter-id';
-import { DotsHorizontalIcon } from '@radix-ui/react-icons';
-import type { Row } from '@tanstack/react-table';
-import { FileText } from 'lucide-react';
-import { useState } from 'react';
-import { DashboardModal } from '../modal-row-actions/dashboard-modal';
+import type { JiraIssue } from "@/http/jira/get-jira-filter-id";
+import { DotsHorizontalIcon } from "@radix-ui/react-icons";
+import type { Row } from "@tanstack/react-table";
+import { FileText } from "lucide-react";
+import { useState } from "react";
+import { DashboardModal } from "../modal-row-actions/dashboard-modal";
+import { ModalDetalhes } from "../modal-row-actions/modal";
 
 interface DataTableRowActionsProps<TData> {
 	row: Row<TData>;
@@ -24,8 +25,8 @@ export function DataTableRowActions<TData>({
 
 	// Estados para controlar abertura da modal e conteúdo dinâmico
 	const [modalOpen, setModalOpen] = useState(false);
-	const [modalTitle, setModalTitle] = useState('');
-	const [modalDescription, setModalDescription] = useState('');
+	const [modalTitle, setModalTitle] = useState("");
+	const [modalDescription, setModalDescription] = useState("");
 
 	const openModal = (title: string, description: string) => {
 		setModalTitle(title);
@@ -47,7 +48,7 @@ export function DataTableRowActions<TData>({
 				<DropdownMenuContent align="end" className="w-[160px]">
 					<DropdownMenuItem
 						className="cursor-pointer"
-						onSelect={() => openModal('Detalhes gerais', jiraIssue.descricao)}
+						onSelect={() => openModal("Detalhes gerais", jiraIssue.descricao)}
 					>
 						<div className="flex hover:text-[#0862B1]">
 							<FileText className="w-4 h-4 mr-2" />
