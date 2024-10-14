@@ -11,8 +11,8 @@ import { ProgramList } from './_components/program-list';
 import { TotalInitiatives } from './_components/total-initiatives';
 
 import { motion } from 'framer-motion';
-import { columns } from './_components/table-iniciative/columns';
-import { DataTable } from './_components/table-iniciative/data-table';
+import { columns } from '../_components/table-iniciative/columns';
+import { DataTable } from '../_components/table-iniciative/data-table';
 
 interface JiraFilterDetailsProps {
 	params: { filterId: string; filterName: string };
@@ -149,13 +149,29 @@ export default function JiraFilterDetails({ params }: JiraFilterDetailsProps) {
 
 					{/* Cards Main */}
 					<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+						{/* Card gráfico 6 meses */}
 						<div className="grid gap-4 w-full">
 							<OverviewYear jiraData={jiraData} />
 						</div>
 
-						{/* Card Visão geral ocupando 2 colunas */}
+						{/* Card Lista de iniciativas ocupando 2 colunas */}
 						<div className="col-span-3 grid gap-4 w-full">
-							<DataTable data={tasks} columns={columns} />
+							<DataTable 
+							data={tasks} 
+							columns={columns} 
+							columnVisibility={{
+								cliente: true,
+								summary: true,
+								status: true,
+								priority: false,
+								responsável: false,
+								'data limite': false,
+							}}
+							pagination={{
+								pageSize: 6,
+								pageIndex: 0,
+							}}
+							/>
 						</div>
 					</div>
 				</div>

@@ -5,8 +5,10 @@ import Image from 'next/image';
 import PageHeader from '@/app/(routes)/_components/page-header';
 import { useJiraFilter } from '@/http/jira/get-jira-filter-id';
 import { motion } from 'framer-motion';
-import { columns } from './_components/columns';
-import { DataTable } from './_components/data-table';
+import { DataTable } from '../_components/table-iniciative/data-table';
+import { columns } from '../_components/table-iniciative/columns';
+
+
 
 interface JiraFilterDetailsProps {
 	params: { filterId: string; filterName: string };
@@ -85,7 +87,22 @@ export default function TaskPage({ params }: JiraFilterDetailsProps) {
 
 			<main className="flex-1 h-[calc(100vh-61px)] relative overflow-auto bg-slate-50">
 				<div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
-					<DataTable data={tasks} columns={columns} />
+				   <DataTable 
+							data={tasks} 
+							columns={columns} 
+							columnVisibility={{
+								cliente: true,
+								summary: true,
+								status: true,
+								priority: true,
+								responsável: true,
+								'data limite': true,
+							}}
+							pagination={{
+								pageSize: 10,
+								pageIndex: 0,
+							}}
+							/>
 				</div>
 			</main>
 		</>

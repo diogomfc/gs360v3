@@ -11,7 +11,7 @@ import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import type { Row } from '@tanstack/react-table';
 import { FileText } from 'lucide-react';
 import { useState } from 'react';
-import { DashboardModal } from '../../_components/modal-row-actions/dashboard-modal';
+import { DashboardModal } from '../modal-row-actions/dashboard-modal';
 
 interface DataTableRowActionsProps<TData> {
 	row: Row<TData>;
@@ -26,8 +26,6 @@ export function DataTableRowActions<TData>({
 	const [modalOpen, setModalOpen] = useState(false);
 	const [modalTitle, setModalTitle] = useState('');
 	const [modalDescription, setModalDescription] = useState('');
-
-
 
 	const openModal = (title: string, description: string) => {
 		setModalTitle(title);
@@ -53,9 +51,46 @@ export function DataTableRowActions<TData>({
 					>
 						<div className="flex hover:text-[#0862B1]">
 							<FileText className="w-4 h-4 mr-2" />
-							<span className="text-xs">Detalhes geral</span>
+							<span className="text-xs">Detalhes gerais</span>
 						</div>
 					</DropdownMenuItem>
+
+					{/* <DropdownMenuItem
+						className="cursor-pointer"
+						onSelect={() => openModal('Status Geral', jiraIssue.status)}
+					>
+						<div className="flex hover:text-[#0862B1]">
+							<FileChartLine className="w-4 h-4 mr-2" />
+							<span className="text-xs">Status</span>
+						</div>
+					</DropdownMenuItem>
+					<DropdownMenuItem
+						className="cursor-pointer"
+						onSelect={() => openModal('Escopo', jiraIssue.produto)}
+					>
+						<div className="flex hover:text-[#0862B1]">
+							<FileBox className="w-4 h-4 mr-2" />
+							<span className="text-xs">Escopo</span>
+						</div>
+					</DropdownMenuItem>
+					<DropdownMenuItem
+						className="cursor-pointer"
+						onSelect={() => openModal('Risco / Issue', jiraIssue.risco)}
+					>
+						<div className="flex hover:text-[#0862B1]">
+							<FileDiff className="w-4 h-4 mr-2" />
+							<span className="text-xs">Risco / Issue</span>
+						</div>
+					</DropdownMenuItem>
+					<DropdownMenuItem
+						className="cursor-pointer"
+						onSelect={() => openModal('Macro do Plano', jiraIssue.acao)}
+					>
+						<div className="flex hover:text-[#0862B1]">
+							<FileCheck2 className="w-4 h-4 mr-2" />
+							<span className="text-xs">Macro do Plano</span>
+						</div>
+					</DropdownMenuItem> */}
 				</DropdownMenuContent>
 			</DropdownMenu>
 
