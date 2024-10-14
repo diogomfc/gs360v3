@@ -12,7 +12,6 @@ import type { Row } from "@tanstack/react-table";
 import { FileText } from "lucide-react";
 import { useState } from "react";
 import { DashboardModal } from "../modal-row-actions/dashboard-modal";
-import { ModalDetalhes } from "../modal-row-actions/modal";
 
 interface DataTableRowActionsProps<TData> {
 	row: Row<TData>;
